@@ -30,4 +30,12 @@ public class PlayerController : MonoBehaviour
         _startingLeftBound = _leftBound;
         _startingRightBound = _rightBound;
     }
+
+   private void Update()
+    {
+        Vector3 newPosition = transform.position + new Vector3(UserInput.MoveInput.x * _moveSpeed * Time.deltaTime, 0f, 0f);
+        newPosition.x = Mathf.Clamp(newPosition.x, _leftBound, _rightBound);
+
+        transform.position = newPosition;
+    }
 }
