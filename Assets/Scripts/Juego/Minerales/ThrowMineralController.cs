@@ -60,5 +60,7 @@ public class ThrowMineralController : MonoBehaviour
         MineralActual = go;
         _circleCollider = MineralActual.GetComponent<CircleCollider2D>();
         Bounds = _circleCollider.bounds;
+
+        _playerController.ChangeBoundary(Extra_Tamaño);
     }
 }
