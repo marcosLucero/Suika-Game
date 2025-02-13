@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 523454216315970980}
   - component: {fileID: 7010410492736336468}
   - component: {fileID: 6311601618217161704}
+  - component: {fileID: 6702194640926222572}
   m_Layer: 0
   m_Name: Mineral_9
   m_TagString: Untagged
@@ -28,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 2880324930833026543}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.303, y: 0.088, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.55, y: 0.55, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -77,7 +78,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 4
+  m_SortingOrder: 11
   m_Sprite: {fileID: -6760471406004971263, guid: 81b1e36eace91cf419e9b7abefd8de3f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -146,7 +147,7 @@ PolygonCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -191,3 +192,15 @@ PolygonCollider2D:
       - {x: 1.93, y: -1.4499999}
       - {x: 1.9501857, y: 1.4675739}
   m_UseDelaunayMesh: 0
+--- !u!114 &6702194640926222572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2880324930833026543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9338a50197b98d34e8ed3d5f63626c8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

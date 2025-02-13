@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,11 +14,11 @@ public class ThrowMineralController : MonoBehaviour
     private PlayerController _playerController;
 
     private Rigidbody2D _rb;
-    private CircleCollider2D _circleCollider;
+    private PolygonCollider2D _circleCollider;
 
     public Bounds Bounds { get; private set; }
 
-    private const float Extra_Tamaño = 0.2f;
+    private const float Extra_width = 0.2f;
 
     public bool CanThrow { get; set; } = true;
 
@@ -58,9 +58,9 @@ public class ThrowMineralController : MonoBehaviour
     {
         GameObject go = Instantiate(mineral, _mineralesTransform);
         MineralActual = go;
-        _circleCollider = MineralActual.GetComponent<CircleCollider2D>();
+        _circleCollider = MineralActual.GetComponent<PolygonCollider2D>();
         Bounds = _circleCollider.bounds;
 
-        _playerController.ChangeBoundary(Extra_Tamaño);
+        _playerController.ChangeBoundary(Extra_width);
     }
 }
