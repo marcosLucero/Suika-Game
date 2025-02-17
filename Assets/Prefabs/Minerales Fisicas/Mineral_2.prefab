@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 5171691024211742754}
   - component: {fileID: 6494238653357164954}
   - component: {fileID: 5275159023487591517}
+  - component: {fileID: -3623000527423764894}
+  - component: {fileID: 1585348789602724335}
   m_Layer: 0
   m_Name: Mineral_2
   m_TagString: Untagged
@@ -198,5 +200,32 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9338a50197b98d34e8ed3d5f63626c8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-3623000527423764894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6754582620213487395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f23034cd55472744b487a4f4c9bfeea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MineralIndex: 2
+  PuntosCuandoAniquilados: 1
+  MineralMassa: 1.4
+--- !u!114 &1585348789602724335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6754582620213487395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ebc0bddd9d88d0409fd1348bb8c6546, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
