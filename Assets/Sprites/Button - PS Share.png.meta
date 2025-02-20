@@ -272,7 +272,13 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Button - PS Share_0: 2522989820198486350
+      Button - PS Share_1: -3593637338222342822
+      Button - PS Share_2: 1304402670240552901
+      Button - PS Share_3: 4614072241854745479
+      Button - PS Share_4: -3922460211872055311
+      Button - PS Share_5: 2445213957599203337
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
