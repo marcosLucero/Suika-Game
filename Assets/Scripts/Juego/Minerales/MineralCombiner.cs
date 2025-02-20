@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class MineralCombiner : MonoBehaviour
 {
-
     private int _layerIndex;
-
     private MineralInfo _info;
+    private bool _hasFused = false; // Evita fusiones múltiples simultáneas
 
     private void Awake()
     {
@@ -17,54 +16,87 @@ public class MineralCombiner : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (_hasFused)
+            return; // Si ya se inició una fusión, salimos
+
+        // Comprobamos que el objeto colisionado está en la misma layer
         if (collision.gameObject.layer == _layerIndex)
         {
-            MineralInfo info = collision.gameObject.GetComponent<MineralInfo>();
-            if (info != null)
+            MineralInfo otherInfo = collision.gameObject.GetComponent<MineralInfo>();
+            if (otherInfo != null && otherInfo.MineralIndex == _info.MineralIndex)
             {
-                if (info.MineralIndex == _info.MineralIndex)
+                int thisID = gameObject.GetInstanceID();
+                int otherID = collision.gameObject.GetInstanceID();
+
+                // Solo el objeto con ID mayor se encargará de la fusión (evitando doble fusión)
+                if (thisID > otherID)
                 {
-                    int thisID = gameObject.GetInstanceID();
-                    int otherID = collision.gameObject.GetInstanceID();
-
-                    if (thisID > otherID) 
+                    // Si es el último mineral, no se fusiona (se pueden dejar en escena)
+                    if (_info.MineralIndex == MineralesSelector.Instance.Minerales.Length - 1)
                     {
-                        if (_info.MineralIndex == MineralesSelector.Instance.Minerales.Length - 1)
+                        // Puedes decidir qué hacer aquí: dejarlos o destruirlos
+                        return;
+                    }
+                    else
+                    {
+                        // Marcamos que ya se inició una fusión para evitar duplicados
+                        _hasFused = true;
+
+                        // Calculamos la posición media de los dos minerales
+                        Vector3 middlePosition = (transform.position + collision.transform.position) / 2f;
+                        // Añadimos un pequeño offset aleatorio para evitar solapamientos exactos
+                        middlePosition += new Vector3(Random.Range(-0.2f, 0.2f), Random.Range(-0.2f, 0.2f), 0f);
+
+                        // Ajustamos la posición para que no quede dentro de una pared
+                        middlePosition = AdjustFusionPosition(middlePosition);
+
+                        // Instanciamos el mineral fusionado (el siguiente en el índice)
+                        GameObject fusedMineral = Instantiate(SpamCombinedMineral(_info.MineralIndex), GameManager.Instance.transform);
+                        fusedMineral.transform.position = middlePosition;
+
+                        // Marcamos, si es necesario, al nuevo mineral (por ejemplo, con un indicador de fusión)
+                        ColiderInformer informer = fusedMineral.GetComponent<ColiderInformer>();
+                        if (informer != null)
                         {
-                            Destroy(collision.gameObject);
-                            Destroy(gameObject);
+                            informer.WasCombinedIn = true;
                         }
 
-                        else
-                        {
-                            Vector3 middlePosition = (transform.position + collision.transform.position) / 2f;
-                            GameObject go = Instantiate(SpamCombinedMineral(_info.MineralIndex), GameManager.Instance.transform);
-                            go.transform.position = middlePosition;
-
-                             ColiderInformer informer = go.GetComponent<ColiderInformer>();
-                            if (informer != null)
-                            {
-                                informer.WasCombinedIn = true;
-                            }
-
-                            Destroy(collision.gameObject);
-                            Destroy(gameObject);
-                        }
+                        // Destruimos los dos minerales originales
+                        Destroy(collision.gameObject);
+                        Destroy(gameObject);
                     }
                 }
             }
         }
     }
+
+    // Devuelve el mineral del siguiente índice (el que resulta de la fusión)
     private GameObject SpamCombinedMineral(int index)
     {
-        GameObject go = MineralesSelector.Instance.Minerales[index + 1];
-        return go;
+        return MineralesSelector.Instance.Minerales[index + 1];
+    }
+
+    // Ajusta la posición de fusión para evitar que el mineral quede dentro de una pared
+    private Vector3 AdjustFusionPosition(Vector3 fusionPos)
+    {
+        int wallLayer = LayerMask.NameToLayer("Wall");
+        // Usamos OverlapPoint para comprobar si el punto está dentro de un collider de pared
+        Collider2D wallCollider = Physics2D.OverlapPoint(fusionPos, 1 << wallLayer);
+        Vector3 adjustedPos = fusionPos;
+        if (wallCollider != null)
+        {
+            // Obtenemos el punto más cercano fuera de la pared
+            Vector2 closestPoint = wallCollider.ClosestPoint(fusionPos);
+            // Calculamos la dirección para salir de la pared
+            Vector2 pushDirection = ((Vector2)fusionPos - closestPoint).normalized;
+            if (pushDirection == Vector2.zero)
+            {
+                pushDirection = Vector2.up;
+            }
+            // Empujamos la posición hacia afuera; ajusta pushDistance según convenga
+            float pushDistance = 100f;
+            adjustedPos = fusionPos + (Vector3)(pushDirection * pushDistance);
+        }
+        return adjustedPos;
     }
 }
-// problemas actuales:
-/*
- * - Si se mezclan minerales muy cerca de la pared pueden quedarse pillasdos y no caer.
- * - Si se mezclan 3 minerales muy cerca se sumaran dos veces el indice lo cual dara un indice incorrecto ya que solo queremos que se mezcle con uno y no con los dos a la vez
- * - Si se mezclan muy cercas grandes con pequeños aveces se puden quedar unos detro de otros.
- * - Hacer que los ultimos minerales no desaparezcan/no se combinen y se queden en la escena.
- */
