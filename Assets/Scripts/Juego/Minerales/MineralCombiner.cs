@@ -17,30 +17,40 @@ public class MineralCombiner : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (_hasFused)
-            return; // Si ya se inició una fusión, salimos
+            return; // Si este objeto ya está en proceso de fusión, salimos
 
         // Comprobamos que el objeto colisionado está en la misma layer
         if (collision.gameObject.layer == _layerIndex)
         {
             MineralInfo otherInfo = collision.gameObject.GetComponent<MineralInfo>();
+            MineralCombiner otherCombiner = collision.gameObject.GetComponent<MineralCombiner>();
+
+            // Si el otro objeto ya está en proceso de fusión, salimos
+            if (otherCombiner != null && otherCombiner._hasFused)
+                return;
+
+            // Comprobamos que ambos minerales tienen el mismo índice
             if (otherInfo != null && otherInfo.MineralIndex == _info.MineralIndex)
             {
                 int thisID = gameObject.GetInstanceID();
                 int otherID = collision.gameObject.GetInstanceID();
 
-                // Solo el objeto con ID mayor se encargará de la fusión (evitando doble fusión)
+                // Solo el objeto con ID mayor se encargará de la fusión (evitando duplicados)
                 if (thisID > otherID)
                 {
                     // Si es el último mineral, no se fusiona (se pueden dejar en escena)
                     if (_info.MineralIndex == MineralesSelector.Instance.Minerales.Length - 1)
                     {
-                        // Puedes decidir qué hacer aquí: dejarlos o destruirlos
                         return;
                     }
                     else
                     {
-                        // Marcamos que ya se inició una fusión para evitar duplicados
+                        // Marcamos ambos objetos como ya fusionados para evitar fusiones múltiples
                         _hasFused = true;
+                        if (otherCombiner != null)
+                        {
+                            otherCombiner._hasFused = true;
+                        }
 
                         // Calculamos la posición media de los dos minerales
                         Vector3 middlePosition = (transform.position + collision.transform.position) / 2f;
@@ -69,6 +79,7 @@ public class MineralCombiner : MonoBehaviour
             }
         }
     }
+
 
     // Devuelve el mineral del siguiente índice (el que resulta de la fusión)
     private GameObject SpamCombinedMineral(int index)
