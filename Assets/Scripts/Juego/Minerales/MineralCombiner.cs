@@ -38,6 +38,7 @@ public class MineralCombiner : MonoBehaviour
                 // Solo el objeto con ID mayor se encargará de la fusión (evitando duplicados)
                 if (thisID > otherID)
                 {
+                    GameManager.Instance.IncreaseScore(_info.PuntosCuandoAniquilados);
                     // Si es el último mineral, no se fusiona (se pueden dejar en escena)
                     if (_info.MineralIndex == MineralesSelector.Instance.Minerales.Length - 1)
                     {
@@ -105,7 +106,7 @@ public class MineralCombiner : MonoBehaviour
                 pushDirection = Vector2.up;
             }
             // Empujamos la posición hacia afuera; ajusta pushDistance según convenga
-            float pushDistance = 100f;
+            float pushDistance = 1f;
             adjustedPos = fusionPos + (Vector3)(pushDirection * pushDistance);
         }
         return adjustedPos;

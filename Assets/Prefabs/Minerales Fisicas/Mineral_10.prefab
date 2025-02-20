@@ -227,7 +227,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MineralIndex: 10
-  PuntosCuandoAniquilados: 1
+  PuntosCuandoAniquilados: 66
   MineralMassa: 1
 --- !u!114 &-973895906998354873
 MonoBehaviour:
