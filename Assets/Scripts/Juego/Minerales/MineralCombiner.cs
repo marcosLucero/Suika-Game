@@ -106,7 +106,7 @@ public class MineralCombiner : MonoBehaviour
                 pushDirection = Vector2.up;
             }
             // Empujamos la posición hacia afuera; ajusta pushDistance según convenga
-            float pushDistance = 1f;
+            float pushDistance = 1.5f;
             adjustedPos = fusionPos + (Vector3)(pushDirection * pushDistance);
         }
         return adjustedPos;
