@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: -6604429643949899365}
   - component: {fileID: -3782333872921368992}
   - component: {fileID: -6361774414303846629}
+  - component: {fileID: -1315225967408751308}
   m_Layer: 9
   m_Name: Mineral_8
   m_TagString: Untagged
@@ -272,3 +273,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d689fcec3b62ea8448768c14e4837b47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-1315225967408751308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 899699003826200334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 323822d90d09fb744a28501efb3bb61f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Explosion: {fileID: 5757326240830025333, guid: a2d68fd81c240d841ad9d58126a1427d, type: 3}
