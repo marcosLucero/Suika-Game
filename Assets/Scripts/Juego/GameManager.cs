@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Image _panelImage; // Imagen de fondo del panel
     [SerializeField] private GameObject _box; // Referencia al objeto box
     [SerializeField] private GameObject _player; // Referencia al objeto player
+    [SerializeField] private TextMeshProUGUI _finalScoreText; // Texto "Tu puntuación: X"
     [SerializeField] private float _fadeTime = 2f;
 
     public float TimeTillGamerOver = 1.5f;
@@ -43,6 +44,13 @@ public class GameManager : MonoBehaviour
         // Desactivar box y player
         if (_box != null) _box.SetActive(false);
         if (_player != null) _player.SetActive(false);
+
+        // Mostrar la puntuación final en el panel de Game Over
+        if (_finalScoreText != null)
+        {
+            _finalScoreText.text = "Tu puntuación: " + CurrentScore;
+            _finalScoreText.gameObject.SetActive(true);
+        }
 
         StartCoroutine(FadeInGameOverPanel());
     }
