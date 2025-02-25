@@ -15,7 +15,7 @@ public class Fusion : MonoBehaviour
             if (collider != null)
             {
                 Vector2 mineralSize = collider.bounds.size; // Tamaño del mineral
-                float scaleFactor = Mathf.Max(mineralSize.x, mineralSize.y) * 2f; // Factor de escala
+                float scaleFactor = Mathf.Max(mineralSize.x, mineralSize.y) * 2.5f; // Factor de escala
                 explosionInstance.transform.localScale = new Vector3(scaleFactor, scaleFactor, 1f);
             }
 

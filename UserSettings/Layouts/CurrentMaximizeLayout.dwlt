@@ -26,7 +26,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 100}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 0
-  controlID: 6489
+  controlID: 16435
   draggingID: 0
 --- !u!114 &2
 MonoBehaviour:
@@ -153,7 +153,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 100}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 6490
+  controlID: 16436
   draggingID: 0
 --- !u!114 &4
 MonoBehaviour:
@@ -747,9 +747,9 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: 1.6586446, y: -1.0918869, z: -0.016017536}
+    m_Target: {x: 0.79276574, y: -0.4912444, z: -0.04335715}
     speed: 2
-    m_Value: {x: 1.6586446, y: -1.0918869, z: -0.016017536}
+    m_Value: {x: 0.79276574, y: -0.4912444, z: -0.04335715}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -799,9 +799,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 2.4555607
+    m_Target: 5.189525
     speed: 2
-    m_Value: 2.4555607
+    m_Value: 5.189525
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -1093,7 +1093,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: aeaf0000
       m_LastClickedID: 0
-      m_ExpandedIDs: 0cfbffff
+      m_ExpandedIDs: 0cfbffff20ae000074ae00001aaf0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1191,7 +1191,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Prefabs/Minerales Fisicas
+    - Assets/Scripts/Juego/animaciones
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -1201,16 +1201,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Prefabs/Minerales Fisicas
+  - Assets/Scripts/Juego/animaciones
   m_LastFoldersGridSize: -1
   m_LastProjectPath: D:\GitHub\Suika-Game
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: deb30000
-    m_LastClickedID: 46046
-    m_ExpandedIDs: 0000000074b3000076b3000078b300007ab3000000ca9a3b
+    m_SelectedIDs: 5eb40000
+    m_LastClickedID: 46174
+    m_ExpandedIDs: 0000000074b3000076b3000078b300007ab30000e4b3000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1267,7 +1267,7 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: aeaf0000
     m_LastClickedInstanceID: 44974
-    m_HadKeyboardFocusLastEvent: 0
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: 0eb20000aab20000a4b20000b4b2000006b50000f2ae000016b000002ece000000000000c4b000002ab60000
     m_RenameOverlay:
       m_UserAcceptedRename: 0

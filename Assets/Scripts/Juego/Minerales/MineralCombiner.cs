@@ -14,28 +14,50 @@ public class MineralCombiner : MonoBehaviour
         _layerIndex = gameObject.layer;
     }
 
+    // Se utiliza OnCollisionEnter2D y OnCollisionStay2D para detectar contacto real
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        TryFusion(collision);
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        TryFusion(collision);
+    }
+
+    private void TryFusion(Collision2D collision)
+    {
         if (_hasFused)
-            return; // 🔹 Si ya se fusionó, salimos
+            return; // Si ya se fusionó, salimos
 
-        if (collision.gameObject.layer == _layerIndex)
+        if (collision.gameObject.layer != _layerIndex)
+            return;
+
+        // Comprobamos el cooldown en este mineral
+        FusionCooldown myCooldown = GetComponent<FusionCooldown>();
+        if (myCooldown != null && !myCooldown.CanFuse)
+            return;
+
+        // Comprobamos el cooldown en el objeto colisionado
+        FusionCooldown otherCooldown = collision.gameObject.GetComponent<FusionCooldown>();
+        if (otherCooldown != null && !otherCooldown.CanFuse)
+            return;
+
+        MineralInfo otherInfo = collision.gameObject.GetComponent<MineralInfo>();
+        MineralCombiner otherCombiner = collision.gameObject.GetComponent<MineralCombiner>();
+
+        if (otherCombiner != null && otherCombiner._hasFused)
+            return;
+
+        if (otherInfo != null && otherInfo.MineralIndex == _info.MineralIndex)
         {
-            MineralInfo otherInfo = collision.gameObject.GetComponent<MineralInfo>();
-            MineralCombiner otherCombiner = collision.gameObject.GetComponent<MineralCombiner>();
+            int thisID = gameObject.GetInstanceID();
+            int otherID = collision.gameObject.GetInstanceID();
 
-            if (otherCombiner != null && otherCombiner._hasFused)
-                return;
-
-            if (otherInfo != null && otherInfo.MineralIndex == _info.MineralIndex)
+            // Se usa el InstanceID para evitar fusiones duplicadas
+            if (thisID > otherID)
             {
-                int thisID = gameObject.GetInstanceID();
-                int otherID = collision.gameObject.GetInstanceID();
-
-                if (thisID > otherID)
-                {
-                    StartCoroutine(FusionProcess(collision, otherCombiner));
-                }
+                StartCoroutine(FusionProcess(collision, otherCombiner));
             }
         }
     }
@@ -44,6 +66,7 @@ public class MineralCombiner : MonoBehaviour
     {
         GameManager.Instance.IncreaseScore(_info.PuntosCuandoAniquilados);
 
+        // Si estamos en el índice máximo, no se fusiona
         if (_info.MineralIndex == MineralesSelector.Instance.Minerales.Length - 1)
         {
             yield break;
@@ -55,50 +78,60 @@ public class MineralCombiner : MonoBehaviour
             otherCombiner._hasFused = true;
         }
 
-        // 🔹 🔥 **Desactivamos las colisiones de ambos minerales por 0.3s**
+        // Desactivamos temporalmente las colisiones de ambos minerales
         Collider2D colThis = GetComponent<Collider2D>();
         Collider2D colOther = collision.gameObject.GetComponent<Collider2D>();
 
         if (colThis) colThis.enabled = false;
         if (colOther) colOther.enabled = false;
 
-        // 🔹 Calculamos la posición media de los dos minerales
+        // Calculamos la posición media de ambos minerales
         Vector3 middlePosition = (transform.position + collision.transform.position) / 2f;
         middlePosition += new Vector3(Random.Range(-0.2f, 0.2f), Random.Range(-0.2f, 0.2f), 0f);
         middlePosition = AdjustFusionPosition(middlePosition);
 
+        // Instanciamos el nuevo mineral fusionado
         GameObject fusedMineral = Instantiate(SpamCombinedMineral(_info.MineralIndex), GameManager.Instance.transform);
         fusedMineral.transform.position = middlePosition;
 
+        // Agregamos un cooldown al nuevo mineral (0.5 segundos)
+        FusionCooldown cooldown = fusedMineral.GetComponent<FusionCooldown>();
+        if (cooldown == null)
+        {
+            cooldown = fusedMineral.AddComponent<FusionCooldown>();
+            cooldown.cooldownDuration = 0.5f;
+        }
+
+        // Reproducimos la animación de fusión
         Fusion fusionScript = fusedMineral.GetComponent<Fusion>();
         if (fusionScript != null)
         {
             fusionScript.PlayFusionEffect();
         }
 
-        // 🔹 Reproducir el sonido de fusión
+        // Reproducimos el sonido de fusión
         AudioSource audioSource = fusedMineral.GetComponent<AudioSource>();
         if (audioSource != null)
         {
             audioSource.Play();
         }
 
+        // Marcamos la fusión (esto permite que, desde ColiderInformer, se gestione el spawn del siguiente mineral)
         ColiderInformer informer = fusedMineral.GetComponent<ColiderInformer>();
         if (informer != null)
         {
             informer.WasCombinedIn = true;
         }
 
+        // Destruimos los objetos originales (solo se fusionan cuando realmente se tocan)
         Destroy(collision.gameObject);
         Destroy(gameObject);
 
-        // 🔹 ⏳ **Esperamos 0.3s antes de reactivar colisiones**
+        // Esperamos 0.3 segundos para dar tiempo a que se vea la animación
         yield return new WaitForSeconds(0.3f);
-
         if (colThis) colThis.enabled = true;
         if (colOther) colOther.enabled = true;
     }
-
 
     private GameObject SpamCombinedMineral(int index)
     {
