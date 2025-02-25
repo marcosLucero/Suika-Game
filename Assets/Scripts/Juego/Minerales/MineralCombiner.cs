@@ -6,7 +6,7 @@ public class MineralCombiner : MonoBehaviour
 {
     private int _layerIndex;
     private MineralInfo _info;
-    private bool _hasFused = false; // Evita fusiones múltiples simultáneas
+    private bool _hasFused = false;
 
     private void Awake()
     {
@@ -17,85 +17,94 @@ public class MineralCombiner : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (_hasFused)
-            return; // Si este objeto ya está en proceso de fusión, salimos
+            return; // 🔹 Si ya se fusionó, salimos
 
-        // Comprobamos que el objeto colisionado está en la misma layer
         if (collision.gameObject.layer == _layerIndex)
         {
             MineralInfo otherInfo = collision.gameObject.GetComponent<MineralInfo>();
             MineralCombiner otherCombiner = collision.gameObject.GetComponent<MineralCombiner>();
 
-            // Si el otro objeto ya está en proceso de fusión, salimos
             if (otherCombiner != null && otherCombiner._hasFused)
                 return;
 
-            // Comprobamos que ambos minerales tienen el mismo índice
             if (otherInfo != null && otherInfo.MineralIndex == _info.MineralIndex)
             {
                 int thisID = gameObject.GetInstanceID();
                 int otherID = collision.gameObject.GetInstanceID();
 
-                // Solo el objeto con ID mayor se encargará de la fusión (evitando duplicados)
                 if (thisID > otherID)
                 {
-                    GameManager.Instance.IncreaseScore(_info.PuntosCuandoAniquilados);
-
-                    // Si es el último mineral, no se fusiona
-                    if (_info.MineralIndex == MineralesSelector.Instance.Minerales.Length - 1)
-                    {
-                        return;
-                    }
-                    else
-                    {
-                        // Marcamos ambos objetos como ya fusionados para evitar fusiones múltiples
-                        _hasFused = true;
-                        if (otherCombiner != null)
-                        {
-                            otherCombiner._hasFused = true;
-                        }
-
-                        // Calculamos la posición media de los dos minerales
-                        Vector3 middlePosition = (transform.position + collision.transform.position) / 2f;
-                        // Añadimos un pequeño offset aleatorio para evitar solapamientos exactos
-                        middlePosition += new Vector3(Random.Range(-0.2f, 0.2f), Random.Range(-0.2f, 0.2f), 0f);
-
-                        // Ajustamos la posición para que no quede dentro de una pared
-                        middlePosition = AdjustFusionPosition(middlePosition);
-
-                        // Instanciamos el mineral fusionado (el siguiente en el índice)
-                        GameObject fusedMineral = Instantiate(SpamCombinedMineral(_info.MineralIndex), GameManager.Instance.transform);
-                        fusedMineral.transform.position = middlePosition;
-
-                        // 🔹 Reproducimos la animación de fusión
-                        Fusion fusionScript = fusedMineral.GetComponent<Fusion>();
-                        if (fusionScript != null)
-                        {
-                            fusionScript.PlayFusionEffect();
-                        }
-
-                        // Marcamos, si es necesario, al nuevo mineral (por ejemplo, con un indicador de fusión)
-                        ColiderInformer informer = fusedMineral.GetComponent<ColiderInformer>();
-                        if (informer != null)
-                        {
-                            informer.WasCombinedIn = true;
-                        }
-
-                        // Destruimos los dos minerales originales
-                        Destroy(collision.gameObject);
-                        Destroy(gameObject);
-                    }
+                    StartCoroutine(FusionProcess(collision, otherCombiner));
                 }
             }
         }
     }
 
-    // Devuelve el mineral del siguiente índice (el que resulta de la fusión)
+    private IEnumerator FusionProcess(Collision2D collision, MineralCombiner otherCombiner)
+    {
+        GameManager.Instance.IncreaseScore(_info.PuntosCuandoAniquilados);
+
+        if (_info.MineralIndex == MineralesSelector.Instance.Minerales.Length - 1)
+        {
+            yield break;
+        }
+
+        _hasFused = true;
+        if (otherCombiner != null)
+        {
+            otherCombiner._hasFused = true;
+        }
+
+        // 🔹 🔥 **Desactivamos las colisiones de ambos minerales por 0.3s**
+        Collider2D colThis = GetComponent<Collider2D>();
+        Collider2D colOther = collision.gameObject.GetComponent<Collider2D>();
+
+        if (colThis) colThis.enabled = false;
+        if (colOther) colOther.enabled = false;
+
+        // 🔹 Calculamos la posición media de los dos minerales
+        Vector3 middlePosition = (transform.position + collision.transform.position) / 2f;
+        middlePosition += new Vector3(Random.Range(-0.2f, 0.2f), Random.Range(-0.2f, 0.2f), 0f);
+        middlePosition = AdjustFusionPosition(middlePosition);
+
+        GameObject fusedMineral = Instantiate(SpamCombinedMineral(_info.MineralIndex), GameManager.Instance.transform);
+        fusedMineral.transform.position = middlePosition;
+
+        Fusion fusionScript = fusedMineral.GetComponent<Fusion>();
+        if (fusionScript != null)
+        {
+            fusionScript.PlayFusionEffect();
+        }
+
+        // 🔹 Reproducir el sonido de fusión
+        AudioSource audioSource = fusedMineral.GetComponent<AudioSource>();
+        if (audioSource != null)
+        {
+            audioSource.Play();
+        }
+
+        ColiderInformer informer = fusedMineral.GetComponent<ColiderInformer>();
+        if (informer != null)
+        {
+            informer.WasCombinedIn = true;
+        }
+
+        Destroy(collision.gameObject);
+        Destroy(gameObject);
+
+        // 🔹 ⏳ **Esperamos 0.3s antes de reactivar colisiones**
+        yield return new WaitForSeconds(0.3f);
+
+        if (colThis) colThis.enabled = true;
+        if (colOther) colOther.enabled = true;
+    }
+
+
     private GameObject SpamCombinedMineral(int index)
     {
         return MineralesSelector.Instance.Minerales[index + 1];
     }
 
-    // Ajusta la posición de fusión para evitar que el mineral quede dentro de una pared
     private Vector3 AdjustFusionPosition(Vector3 fusionPos)
     {
         int wallLayer = LayerMask.NameToLayer("Wall");
