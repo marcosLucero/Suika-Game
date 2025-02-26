@@ -1,57 +1,34 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using System.Collections.Generic;
 
-public class SoundManager : MonoBehaviour
+public class SoundToggle : MonoBehaviour
 {
     public Image buttonImage; // Imagen del botón
-    public Sprite soundOnSprite; // Icono sonido ON
-    public Sprite soundOffSprite; // Icono sonido OFF
+    public Sprite soundOnSprite; // Icono de sonido activado
+    public Sprite soundOffSprite; // Icono de sonido desactivado
 
-    private bool isMuted = false;
     private Color activeColor, mutedColor = Color.red; // Color rojo cuando está apagado
 
-    // Lista para almacenar los AudioSource de los efectos de sonido
-    private List<AudioSource> effectAudioSources = new List<AudioSource>();
-
-    void Start()
+    private void Start()
     {
-        // Convierte #B4B4B4 a Color
         ColorUtility.TryParseHtmlString("#B4B4B4", out activeColor);
         UpdateButton();
     }
 
-    // Método para agregar AudioSource a la lista (lo llamarás desde otros scripts donde se crean los sonidos)
-    public void AddAudioSource(AudioSource audioSource)
-    {
-        if (audioSource != null && !effectAudioSources.Contains(audioSource))
-        {
-            effectAudioSources.Add(audioSource);
-        }
-    }
-
-    // Método para alternar entre sonido activado y desactivado
     public void ToggleSound()
     {
-        isMuted = !isMuted;
-
-        // Mute o desmute los efectos de sonido
-        foreach (AudioSource audioSource in effectAudioSources)
+        if (SoundManager.Instance != null)
         {
-            if (audioSource != null)
-            {
-                audioSource.mute = isMuted; // Mute o desmute el AudioSource
-            }
+            SoundManager.Instance.ToggleSound();  // Cambiar el estado de sonido
+            UpdateButton();  // Actualizar la imagen del botón
         }
-
-        UpdateButton(); // Actualiza la imagen y el color del botón
     }
 
-    // Método para actualizar la imagen y color del botón según el estado del sonido
     private void UpdateButton()
     {
-        if (buttonImage != null)
+        if (buttonImage != null && SoundManager.Instance != null)
         {
+            bool isMuted = SoundManager.Instance.IsMuted();  // Obtener el estado de mutado
             buttonImage.sprite = isMuted ? soundOffSprite : soundOnSprite;
             buttonImage.color = isMuted ? mutedColor : activeColor;
         }

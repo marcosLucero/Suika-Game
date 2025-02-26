@@ -123,15 +123,18 @@ public class MineralCombiner : MonoBehaviour
             informer.WasCombinedIn = true;
         }
 
-        // Destruimos los objetos originales (solo se fusionan cuando realmente se tocan)
+        // Destruimos los objetos originales
         Destroy(collision.gameObject);
         Destroy(gameObject);
 
-        // Esperamos 0.3 segundos para dar tiempo a que se vea la animación
+        // Esperamos 0.3 segundos para dar tiempo a que se vea la animación antes de reactivar las colisiones
         yield return new WaitForSeconds(0.3f);
+
+        // Reactivamos las colisiones
         if (colThis) colThis.enabled = true;
         if (colOther) colOther.enabled = true;
     }
+
 
     private GameObject SpamCombinedMineral(int index)
     {

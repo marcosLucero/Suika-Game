@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: -6346973504015866842}
   - component: {fileID: 3258574938522500187}
   - component: {fileID: -7125667504997772441}
-  - component: {fileID: -3296558051403081758}
+  - component: {fileID: 7795839329706786141}
   m_Layer: 9
   m_Name: Mineral_1
   m_TagString: Untagged
@@ -267,7 +267,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Explosion: {fileID: 5757326240830025333, guid: a2d68fd81c240d841ad9d58126a1427d, type: 3}
---- !u!82 &-3296558051403081758
+--- !u!82 &7795839329706786141
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -280,7 +280,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: 704b785541321bb4a87d3e3cffeba184, type: 3}
   m_Resource: {fileID: 8300000, guid: 704b785541321bb4a87d3e3cffeba184, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.2
+  m_Volume: 0.178
   m_Pitch: 1
   Loop: 0
   Mute: 0
