@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "418688189560",
+    "project_id": "cozy-forge",
+    "storage_bucket": "cozy-forge.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:418688189560:android:13a01330f807b27af8598d",
+        "android_client_info": {
+          "package_name": "com.miempresa.CozyForge"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDMXrxvvUsoVYRDJDBx9ggwKF0L-r28L3A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
