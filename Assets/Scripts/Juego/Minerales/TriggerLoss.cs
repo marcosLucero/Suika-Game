@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TriggerLoss : MonoBehaviour
@@ -8,11 +7,14 @@ public class TriggerLoss : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.gameObject.layer == 7)
+        if (collision.gameObject.layer == 7)  // Asegúrate de que esta sea la capa correcta
         {
             _timer += Time.deltaTime;
-            if (_timer > GameManager.Instance.TimeTillGamerOver)
+
+            // Verificamos si el temporizador ha pasado el umbral de TimeTillGamerOver
+            if (_timer >= GameManager.Instance.TimeTillGamerOver)
             {
+                // Llamamos a GameOver en el GameManager cuando el tiempo se acaba
                 GameManager.Instance.GameOver();
             }
         }
@@ -20,9 +22,9 @@ public class TriggerLoss : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.gameObject.layer == 7)
+        if (collision.gameObject.layer == 7)  // Asegúrate de que esta sea la capa correcta
         {
-            _timer = 0f;
+            _timer = 0f;  // Reiniciamos el temporizador cuando el jugador sale de la zona
         }
     }
 }
