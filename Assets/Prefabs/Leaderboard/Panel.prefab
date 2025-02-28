@@ -284,6 +284,7 @@ GameObject:
   - component: {fileID: 8647448261977794991}
   - component: {fileID: 5585650628360817689}
   - component: {fileID: 4945164239420237487}
+  - component: {fileID: 5870869208073917941}
   m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
@@ -300,7 +301,7 @@ RectTransform:
   m_GameObject: {fileID: 8831262798368821813}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6541854160187246710}
@@ -372,7 +373,21 @@ MonoBehaviour:
   m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
-  m_ChildControlHeight: 0
+  m_ChildControlHeight: 1
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &5870869208073917941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8831262798368821813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02c2cde1076f14647b037c7e3f264091, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerNameText: {fileID: 5037168783023628899}
+  scoreText: {fileID: 7975243844039652598}
