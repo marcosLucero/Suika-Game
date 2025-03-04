@@ -13,9 +13,17 @@ public class GameAgent : Agent
 
     // Almacena la puntuación previa para comparar
     private int previousScore;
+    void Start()
+    {
+        Debug.Log(" GameAgent Start() ejecutado.");
+    }
+
+
 
     public override void Initialize()
     {
+        Debug.Log(" Mover a la izquierda.");
+
         previousScore = gameManager.CurrentScore;
 
         // Buscar referencias si no están asignadas en el Inspector
@@ -70,8 +78,10 @@ public class GameAgent : Agent
         switch (action)
         {
             case 0:
+                Debug.Log(" No hacer nada.");
                 break;
             case 1:
+                Debug.Log(" Mover a la izquierda.");
                 MovePlayer(-1);
                 break;
             case 2:
