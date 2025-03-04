@@ -9,14 +9,29 @@ public class GameAgent : Agent
     [SerializeField] private GameManager gameManager;
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject box;
+    [SerializeField] private ThrowMineralController throwMineralController; // Referencia al controlador
 
     // Almacena la puntuación previa para comparar
     private int previousScore;
 
     public override void Initialize()
     {
-        // Guarda la puntuación inicial
         previousScore = gameManager.CurrentScore;
+
+        // Buscar referencias si no están asignadas en el Inspector
+        if (player == null)
+        {
+            player = GameObject.FindGameObjectWithTag("Player");
+            if (player == null)
+            {
+                Debug.LogError("? No se encontró el jugador. Asegúrate de asignarlo en el Inspector o ponerle el tag 'Player'.");
+            }
+        }
+
+        if (throwMineralController == null)
+        {
+            throwMineralController = FindObjectOfType<ThrowMineralController>();
+        }
     }
 
     public override void OnEpisodeBegin()
@@ -31,15 +46,26 @@ public class GameAgent : Agent
         // 1. Puntuación actual
         sensor.AddObservation(gameManager.CurrentScore);
 
-        // 2. Posición del jugador y del box
-        sensor.AddObservation(player.transform.position);
-        sensor.AddObservation(box.transform.position);
+        // 2. Posición X e Y del jugador
+        sensor.AddObservation(player.transform.position.x);
+        sensor.AddObservation(player.transform.position.y);
+
+        // 3. Posición X e Y de la caja
+        sensor.AddObservation(box.transform.position.x);
+        sensor.AddObservation(box.transform.position.y);
     }
+
 
     public override void OnActionReceived(ActionBuffers actions)
     {
+        Debug.Log(" OnActionReceived ha sido llamado");
+
+
         // Espacio de acciones discreto: 0 = Nada, 1 = Izquierda, 2 = Derecha, 3 = Lanzar mineral
         int action = actions.DiscreteActions[0];
+
+        Debug.Log($" Acción recibida: {action}"); // Agregar esto para depuración
+
 
         switch (action)
         {
@@ -79,6 +105,8 @@ public class GameAgent : Agent
     public override void Heuristic(in ActionBuffers actionsOut)
     {
         var discreteActions = actionsOut.DiscreteActions;
+        Debug.Log(" Heuristic ha sido llamado");
+
         // Pruebas manuales con teclado
         if (Input.GetKey(KeyCode.A))
             discreteActions[0] = 1; // Mover a la izquierda
@@ -95,7 +123,16 @@ public class GameAgent : Agent
     /// </summary>
     private void MovePlayer(int direction)
     {
+        if (player == null)
+        {
+            Debug.LogError("? El jugador no está asignado. No se puede mover.");
+            return;
+        }
+
         float moveSpeed = 5f;
+        Debug.Log($"?? Moviendo al jugador en dirección {direction}");
+
+        // Movimiento en 2D (modifica solo X)
         player.transform.position += Vector3.right * direction * moveSpeed * Time.deltaTime;
     }
 
@@ -105,8 +142,10 @@ public class GameAgent : Agent
     /// </summary>
     private void ThrowMineral()
     {
-        // Llama al método correspondiente del GameManager o controlador del jugador.
-        // Ejemplo:
-        // player.GetComponent<PlayerController>().ThrowMineral();
+        if (throwMineralController != null && throwMineralController.CanThrow)
+        {
+            throwMineralController.CanThrow = false; // Evita lanzamientos repetidos
+            throwMineralController.SpamMinerles(throwMineralController.MineralActual);
+        }
     }
 }
