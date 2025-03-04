@@ -92,6 +92,19 @@ public class GameManager : MonoBehaviour
         // Mostrar el panel de Game Over con una animación de fade
         StartCoroutine(FadeInGameOverPanel());
     }
+    public void OnEpisodeBegin()
+    {
+        // Reactivar los objetos del juego
+        if (_box != null) _box.SetActive(true);
+        if (_player != null) _player.SetActive(true);
+        _gameOverPanel.SetActive(false);
+
+        // Reiniciar la puntuación (si lo deseas)
+        CurrentScore = 0;
+        _scoreText.text = "0";
+
+        // Aquí puedes reiniciar posiciones y otros estados del juego
+    }
 
     private IEnumerator FadeInGameOverPanel()
     {

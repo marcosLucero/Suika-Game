@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 2560
     height: 1349
   m_ShowMode: 4
-  m_Title: Hierarchy
+  m_Title: Project
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 498}
   m_MaxSize: {x: 10000, y: 10000}
@@ -121,7 +121,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 100}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 0
-  controlID: 156
+  controlID: 38378
   draggingID: 0
 --- !u!114 &6
 MonoBehaviour:
@@ -147,7 +147,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 100}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 52
+  controlID: 38285
   draggingID: 0
 --- !u!114 &7
 MonoBehaviour:
@@ -203,7 +203,7 @@ MonoBehaviour:
   - {fileID: 15}
   - {fileID: 16}
   m_Selected: 0
-  m_LastSelected: 2
+  m_LastSelected: 1
 --- !u!114 &9
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -948,9 +948,9 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: -3.3010614, y: 1.2916598, z: 7.814512}
+    m_Target: {x: -0.08973681, y: -0.77263117, z: 184.60924}
     speed: 2
-    m_Value: {x: -0.34372658, y: -0.2429902, z: 3303.0144}
+    m_Value: {x: -0.08973681, y: -0.77263117, z: 184.60924}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1000,9 +1000,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 8.098696
+    m_Target: 5.819004
     speed: 2
-    m_Value: 7.596314
+    m_Value: 5.819004
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -1160,7 +1160,7 @@ MonoBehaviour:
     m_OverlaysVisible: 1
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: 44740
+  m_LastSelectedObjectID: 64978
 --- !u!114 &16
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -1240,7 +1240,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 08fbffffa6ae0000c0ae0000caae0000ceae000000af000004af00000eaf000018af0000
+      m_ExpandedIDs: 6c08feffe80afeff8a0cfeff5436feff1e3afeff8450fefffc52feff9e53feff4a54feffea64feffb865feff5e92fefff098feff80b1feff54b2feffd6b3feffaab4feff60c9feff9e72ffffe677ffff6ca6fffffeaeffffc8b8ffffe8b8ffff60f5ffff08fbfffff4ffffffa6ae0000baae0000c2ae0000ceae0000d2ae000004af00001caf000038c3000060c3000064c30000aec3000040cf00005ccf000068cf00006ccf00009ecf0000a2cf0000accf0000b6cf000036f00000b2250100ec25010040260100582601003a270100402b0100102d0100222d0100
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1312,7 +1312,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts/Leaderboard
+    - Assets/Sprites
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -1322,16 +1322,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scripts/Leaderboard
+  - Assets/Sprites
   m_LastFoldersGridSize: -1
   m_LastProjectPath: D:\GitHub\Suika-Game
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 38b20000
-    m_LastClickedID: 45624
-    m_ExpandedIDs: 00000000a6af0000a8af0000aaaf0000acaf0000aeaf0000
+    m_SelectedIDs: aeb10000
+    m_LastClickedID: 45486
+    m_ExpandedIDs: 0000000044af000098af00009aaf00009caf00009eaf0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1360,7 +1360,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 18b20000
     m_LastClickedID: 45592
-    m_ExpandedIDs: 00000000a6af0000a8af0000aaaf0000acaf0000aeaf0000
+    m_ExpandedIDs: 0000000044af000098af00009aaf00009caf00009eaf0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1389,7 +1389,7 @@ MonoBehaviour:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
     m_HadKeyboardFocusLastEvent: 1
-    m_ExpandedInstanceIDs: 0eb20000aab20000a4b20000b4b2000006b50000f2ae000016b000002ece000000000000c4b000002ab60000b6bd0000babd0000b4b10000b2b100002ab500002eb50000
+    m_ExpandedInstanceIDs: 0eb20000aab20000a4b20000b4b2000006b50000f2ae000016b000002ece000000000000c4b000002ab60000b6bd0000babd0000b4b10000b2b100002ab500002eb500001ce800006abf0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
