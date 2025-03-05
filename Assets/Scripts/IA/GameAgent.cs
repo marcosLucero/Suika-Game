@@ -2,6 +2,7 @@ using UnityEngine;
 using Unity.MLAgents;
 using Unity.MLAgents.Actuators;
 using Unity.MLAgents.Sensors;
+using UnityEngine.InputSystem;
 
 public class GameAgent : Agent
 {
@@ -10,15 +11,29 @@ public class GameAgent : Agent
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject box;
     [SerializeField] private ThrowMineralController throwMineralController; // Referencia al controlador
+    [SerializeField] private PlayerInput playerInput; // Referencia al componente PlayerInput (asignar en Inspector)
 
     // Almacena la puntuación previa para comparar
     private int previousScore;
+
     void Start()
     {
         Debug.Log(" GameAgent Start() ejecutado.");
+
+        // Buscar PlayerInput si no está asignado en el Inspector
+        if (playerInput == null)
+        {
+            playerInput = GetComponent<PlayerInput>();
+            if (playerInput == null && player != null)
+            {
+                playerInput = player.GetComponent<PlayerInput>();
+            }
+            if (playerInput == null)
+            {
+                Debug.LogError("No se encontró PlayerInput en este GameObject ni en el jugador.");
+            }
+        }
     }
-
-
 
     public override void Initialize()
     {
@@ -63,17 +78,14 @@ public class GameAgent : Agent
         sensor.AddObservation(box.transform.position.y);
     }
 
-
     public override void OnActionReceived(ActionBuffers actions)
     {
         Debug.Log(" OnActionReceived ha sido llamado");
-
 
         // Espacio de acciones discreto: 0 = Nada, 1 = Izquierda, 2 = Derecha, 3 = Lanzar mineral
         int action = actions.DiscreteActions[0];
 
         Debug.Log($" Acción recibida: {action}"); // Agregar esto para depuración
-
 
         switch (action)
         {
@@ -115,17 +127,39 @@ public class GameAgent : Agent
     public override void Heuristic(in ActionBuffers actionsOut)
     {
         var discreteActions = actionsOut.DiscreteActions;
-        Debug.Log(" Heuristic ha sido llamado");
+        Debug.Log("Heuristic ha sido llamado con Input System. Tiempo: " + Time.time);
 
-        // Pruebas manuales con teclado
-        if (Input.GetKey(KeyCode.A))
+        if (playerInput == null)
+        {
+            Debug.LogError("PlayerInput no está asignado. No se pueden procesar acciones.");
+            discreteActions[0] = 0; // Acción por defecto (nada)
+            return;
+        }
+
+        Debug.Log("PlayerInput encontrado, accediendo a acciones...");
+        float move = playerInput.actions["Move"].ReadValue<float>(); // -1 (izquierda: A o flecha izquierda), 0 (nada), 1 (derecha: D o flecha derecha)
+        bool throwAction = playerInput.actions["Throw"].WasPressedThisFrame(); // Detecta si se presionó Space
+
+        if (move < 0)
+        {
             discreteActions[0] = 1; // Mover a la izquierda
-        else if (Input.GetKey(KeyCode.D))
+            Debug.Log("Asignada acción: Mover izquierda");
+        }
+        else if (move > 0)
+        {
             discreteActions[0] = 2; // Mover a la derecha
-        else if (Input.GetKeyDown(KeyCode.Space))
+            Debug.Log("Asignada acción: Mover derecha");
+        }
+        else if (throwAction)
+        {
             discreteActions[0] = 3; // Lanzar mineral
+            Debug.Log("Asignada acción: Lanzar mineral");
+        }
         else
+        {
             discreteActions[0] = 0; // No hacer nada
+            Debug.Log("Asignada acción: No hacer nada");
+        }
     }
 
     /// <summary>
