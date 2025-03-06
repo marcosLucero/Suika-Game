@@ -1,0 +1,42 @@
+{
+    "name": "root",
+    "metadata": {
+        "timer_format_version": "0.1.0",
+        "start_time_seconds": "1741258314",
+        "python_version": "3.10.11 (tags/v3.10.11:7d4cc5a, Apr  5 2023, 00:38:17) [MSC v.1929 64 bit (AMD64)]",
+        "command_line_arguments": "D:\\GitHub\\Suika-Game\\my_mlagents_env\\Scripts\\mlagents-learn --run-id=TestRun",
+        "mlagents_version": "1.1.0",
+        "mlagents_envs_version": "1.1.0",
+        "communication_protocol_version": "1.5.0",
+        "pytorch_version": "2.1.1+cpu",
+        "numpy_version": "1.23.5",
+        "end_time_seconds": "1741258377"
+    },
+    "total": 62.470513800000845,
+    "count": 1,
+    "self": 0.0021878999996260973,
+    "children": {
+        "run_training.setup": {
+            "total": 0.053258900001310394,
+            "count": 1,
+            "self": 0.053258900001310394
+        },
+        "TrainerController.start_learning": {
+            "total": 62.41506699999991,
+            "count": 1,
+            "self": 0.0001114999995479593,
+            "children": {
+                "TrainerController._reset_env": {
+                    "total": 62.414935000000696,
+                    "count": 1,
+                    "self": 62.414935000000696
+                },
+                "TrainerController._save_models": {
+                    "total": 2.049999966402538e-05,
+                    "count": 1,
+                    "self": 2.049999966402538e-05
+                }
+            }
+        }
+    }
+}
