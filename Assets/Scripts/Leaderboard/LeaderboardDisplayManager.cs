@@ -36,7 +36,7 @@ public class LeaderboardDisplayManager : MonoBehaviour
     public void LoadLeaderboard()
     {
         // Consultamos el nodo "players" donde se guardan los datos de cada jugador
-        dbRef.Child("players").OrderByChild("score").LimitToLast(10).GetValueAsync().ContinueWithOnMainThread(task =>
+        dbRef.Child("players").OrderByChild("score").LimitToLast(100).GetValueAsync().ContinueWithOnMainThread(task =>
         {
             if (task.IsCompleted)
             {
