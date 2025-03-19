@@ -1,46 +1,32 @@
 using UnityEngine;
-using System.Collections;
 
 public class RandomEvents : MonoBehaviour
 {
-    public PhysicsMaterial2D normalMaterial; // Material normal de los minerales
-    public PhysicsMaterial2D bouncyMaterial; // Material de rebote alto
-    private bool isBouncyActive = false;
+    private int lastScore = 0;
+    private GameManager gameManager;
+    private BouncyEffect bouncyEffect;
 
-    public void ActivateBouncyEffect(float duration)
+    private void Start()
     {
-        if (!isBouncyActive)
+        gameManager = FindObjectOfType<GameManager>();
+        bouncyEffect = FindObjectOfType<BouncyEffect>(); // Referencia al script de rebote
+    }
+
+    private void Update()
+    {
+        if (gameManager != null && gameManager.CurrentScore >= lastScore + 50)
         {
-            StartCoroutine(BouncyEffectCoroutine(duration));
+            lastScore = gameManager.CurrentScore;
+            TriggerBouncyEffect();
         }
     }
 
-    private IEnumerator BouncyEffectCoroutine(float duration)
+    private void TriggerBouncyEffect()
     {
-        isBouncyActive = true;
-
-        // Buscar todos los minerales y cambiar su material físico
-        foreach (var mineral in GameObject.FindGameObjectsWithTag("Mineral"))
+        Debug.Log("Evento activado: Rebote alto por 10 segundos");
+        if (bouncyEffect != null)
         {
-            Rigidbody2D rb = mineral.GetComponent<Rigidbody2D>();
-            if (rb != null)
-            {
-                rb.sharedMaterial = bouncyMaterial;
-            }
+            bouncyEffect.ActivateBouncyEffect(10f); // Dura 10 segundos ahora
         }
-
-        yield return new WaitForSeconds(duration);
-
-        // Restaurar el material original
-        foreach (var mineral in GameObject.FindGameObjectsWithTag("Mineral"))
-        {
-            Rigidbody2D rb = mineral.GetComponent<Rigidbody2D>();
-            if (rb != null)
-            {
-                rb.sharedMaterial = normalMaterial;
-            }
-        }
-
-        isBouncyActive = false;
     }
 }

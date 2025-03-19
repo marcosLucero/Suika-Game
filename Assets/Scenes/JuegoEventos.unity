@@ -1576,6 +1576,7 @@ MonoBehaviour:
   fallSpeed: 1
   fallAmountPerPoint: 0.2
   maxFallDistance: 1
+  minY: -4
 --- !u!1 &280900999
 GameObject:
   m_ObjectHideFlags: 0
@@ -4963,6 +4964,7 @@ GameObject:
   - component: {fileID: 1385033045}
   - component: {fileID: 1385033044}
   - component: {fileID: 1385033046}
+  - component: {fileID: 1385033047}
   m_Layer: 0
   m_Name: EventManager
   m_TagString: Untagged
@@ -4982,8 +4984,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5b1c9551134b3a4d9cc60376bbcf52c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  normalMaterial: {fileID: 6200000, guid: d01f2d92f70368946aa4b50cdb60558e, type: 2}
-  bouncyMaterial: {fileID: 6200000, guid: 8f1538ca255adb145a530fb25400f891, type: 2}
 --- !u!4 &1385033045
 Transform:
   m_ObjectHideFlags: 0
@@ -5017,6 +5017,20 @@ MonoBehaviour:
   mineralLayer:
     serializedVersion: 2
     m_Bits: 512
+--- !u!114 &1385033047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1385033043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90847046d80d39a4695e7654fb6a07e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  normalMaterial: {fileID: 6200000, guid: d01f2d92f70368946aa4b50cdb60558e, type: 2}
+  bouncyMaterial: {fileID: 6200000, guid: 8f1538ca255adb145a530fb25400f891, type: 2}
 --- !u!1 &1462902828
 GameObject:
   m_ObjectHideFlags: 0
