@@ -2,17 +2,19 @@
 
 public class RisingGround : MonoBehaviour
 {
-    public float riseSpeed = 0.5f; // Velocidad de subida del suelo
-    public float fallSpeedMultiplier = 2f; // Cuánto más rápido baja al aumentar la puntuación
-    public float minY = -5f; // Altura mínima del suelo (límite de bajada)
+    public float riseSpeed = 0.1f; // Velocidad de subida del suelo con el tiempo
+    public float fallSpeed = 1f; // Velocidad de bajada cuando sube la puntuación
+    public float fallAmountPerPoint = 0.2f; // Cuánto baja por cada punto de puntuación
+    public float maxFallDistance = 1f; // Distancia máxima que puede bajar en total
+    public float minY = -4f; // **Límite mínimo de bajada** (ajústalo a lo que quieras)
 
-    private float initialY; // Para guardar la posición inicial del suelo
+    private float targetY; // La posición a la que el suelo debe moverse
     private GameManager gameManager; // Referencia al GameManager
     private int lastScore; // Puntuación anterior
 
     void Start()
     {
-        initialY = transform.position.y; // Guardamos la posición inicial del suelo
+        targetY = transform.position.y; // Inicializar la posición objetivo
         gameManager = FindObjectOfType<GameManager>();
 
         if (gameManager == null)
@@ -23,21 +25,21 @@ public class RisingGround : MonoBehaviour
 
     void Update()
     {
-        // Hacer que el suelo suba poco a poco con el tiempo
-        transform.position += Vector3.up * riseSpeed * Time.deltaTime;
+        // Subir el suelo con el tiempo
+        targetY += riseSpeed * Time.deltaTime;
 
-        // Si la puntuación ha aumentado, bajar el suelo
+        // Si la puntuación ha aumentado, bajar el suelo proporcionalmente
         if (gameManager != null && gameManager.CurrentScore > lastScore)
         {
-            float fallAmount = (gameManager.CurrentScore - lastScore) * fallSpeedMultiplier;
-            transform.position -= Vector3.up * fallAmount;
+            float fallAmount = (gameManager.CurrentScore - lastScore) * fallAmountPerPoint;
+            targetY -= fallAmount;
             lastScore = gameManager.CurrentScore; // Actualizar la puntuación anterior
         }
 
-        // Limitar la bajada del suelo
-        if (transform.position.y < minY)
-        {
-            transform.position = new Vector3(transform.position.x, minY, transform.position.z);
-        }
+        // **Limitar la bajada para que no baje más del límite mínimo**
+        targetY = Mathf.Clamp(targetY, minY, transform.position.y + maxFallDistance);
+
+        // Mover el suelo suavemente hacia la posición objetivo
+        transform.position = new Vector3(transform.position.x, Mathf.Lerp(transform.position.y, targetY, fallSpeed * Time.deltaTime), transform.position.z);
     }
 }

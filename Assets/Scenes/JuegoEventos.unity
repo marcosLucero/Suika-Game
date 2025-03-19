@@ -1573,8 +1573,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   riseSpeed: 0.1
-  fallSpeedMultiplier: 0.5
-  minY: -3.2
+  fallSpeed: 1
+  fallAmountPerPoint: 0.2
+  maxFallDistance: 1
 --- !u!1 &280900999
 GameObject:
   m_ObjectHideFlags: 0
