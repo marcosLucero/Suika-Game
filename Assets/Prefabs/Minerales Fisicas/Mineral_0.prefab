@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: -7065677871066386886}
   m_Layer: 9
   m_Name: Mineral_0
-  m_TagString: Untagged
+  m_TagString: Mineral
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
