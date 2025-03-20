@@ -1574,7 +1574,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   riseSpeed: 0.1
   fallSpeed: 1
-  fallAmountPerPoint: 0.1
+  fallAmountPerPoint: 0.05
   maxFallDistance: 1
   minY: -4
 --- !u!1 &280900999
@@ -2299,7 +2299,7 @@ GameObject:
   - component: {fileID: 530441453}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4966,6 +4966,7 @@ GameObject:
   - component: {fileID: 1385033046}
   - component: {fileID: 1385033047}
   - component: {fileID: 1385033048}
+  - component: {fileID: 1385033049}
   m_Layer: 0
   m_Name: EventManager
   m_TagString: Untagged
@@ -5130,6 +5131,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1385033049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1385033043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5223bce21b31e74d874ca187b55347f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ghostDuration: 5
 --- !u!1 &1462902828
 GameObject:
   m_ObjectHideFlags: 0

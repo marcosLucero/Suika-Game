@@ -6,6 +6,7 @@ public class RandomEvents : MonoBehaviour
     private GameManager gameManager;
     private BouncyEffect bouncyEffect;
     private ExplosionEvent explosionEvent;
+    private GhostModeEvent ghostModeEvent; // Nuevo evento
     private bool eventActive = false; // Indica si un evento está en curso
 
     private void Start()
@@ -13,6 +14,7 @@ public class RandomEvents : MonoBehaviour
         gameManager = FindObjectOfType<GameManager>();
         bouncyEffect = FindObjectOfType<BouncyEffect>();
         explosionEvent = FindObjectOfType<ExplosionEvent>();
+        ghostModeEvent = FindObjectOfType<GhostModeEvent>(); // Referencia al nuevo evento
 
         if (gameManager != null)
         {
@@ -22,7 +24,8 @@ public class RandomEvents : MonoBehaviour
 
     private void Update()
     {
-        if (gameManager != null && gameManager.CurrentScore >= lastScore + 50 && !eventActive) // Solo si no hay evento activo
+        if (gameManager != null && gameManager.CurrentScore >= lastScore + 50
+            && !eventActive) // Solo si no hay evento activo
         {
             lastScore = gameManager.CurrentScore;
             TriggerRandomEvent();
@@ -33,7 +36,7 @@ public class RandomEvents : MonoBehaviour
     {
         eventActive = true; // Bloquear nuevos eventos hasta que termine
 
-        int randomEvent = Random.Range(0,2); // 0 = rebote, 1 = explosión
+        int randomEvent = Random.Range(0, 3); // Ahora hay 3 eventos posibles (0 = rebote, 1 = explosión, 2 = modo fantasma)
 
         if (randomEvent == 0 && bouncyEffect != null && !bouncyEffect.IsBouncyActive)
         {
@@ -45,11 +48,17 @@ public class RandomEvents : MonoBehaviour
         {
             Debug.Log("Evento activado: Explosión");
             explosionEvent.TriggerExplosion();
-            Invoke(nameof(ResetEvent), 4f); // Esperar 3 segundos (ajústalo si la explosión dura más)
+            Invoke(nameof(ResetEvent), 4f); // Esperar 4 segundos hasta que termine el evento
+        }
+        else if (randomEvent == 2 && ghostModeEvent != null)
+        {
+            Debug.Log("Evento activado: Modo Fantasma (5s sin jugador)");
+            ghostModeEvent.TriggerGhostMode();
+            Invoke(nameof(ResetEvent), 5f); // Esperar 5 segundos hasta que el jugador reaparezca
         }
         else
         {
-            // Si el evento no se activó, permitir otro intento en la siguiente verificación
+            // Si no se activó ningún evento, desbloquear para permitir otro intento
             eventActive = false;
         }
     }
