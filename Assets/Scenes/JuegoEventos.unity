@@ -1574,7 +1574,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   riseSpeed: 0.1
   fallSpeed: 1
-  fallAmountPerPoint: 0.2
+  fallAmountPerPoint: 0.1
   maxFallDistance: 1
   minY: -4
 --- !u!1 &280900999
@@ -2614,7 +2614,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -21.95811, y: 0.6208384}
+  m_Offset: {x: -21.95811, y: 18.079445}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -2624,7 +2624,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 44.916214, y: 9.525406}
+  m_Size: {x: 44.916214, y: 44.44262}
   m_EdgeRadius: 0
 --- !u!1 &596653180
 GameObject:
@@ -4528,7 +4528,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 23.479868, y: 0.6125963}
+  m_Offset: {x: 23.479868, y: 18.051472}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -4538,7 +4538,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 47.959736, y: 9.508345}
+  m_Size: {x: 47.959736, y: 44.386093}
   m_EdgeRadius: 0
 --- !u!1 &1193427788
 GameObject:
@@ -5012,7 +5012,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9400a7302be06af42997a96cbb205758, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosionForce: 500
+  explosionForce: 3000
   explosionRadius: 2
   eventDuration: 3
   mineralLayer:

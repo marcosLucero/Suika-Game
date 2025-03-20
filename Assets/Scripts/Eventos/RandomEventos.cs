@@ -22,7 +22,7 @@ public class RandomEvents : MonoBehaviour
 
     private void Update()
     {
-        if (gameManager != null && gameManager.CurrentScore >= lastScore + 10 && !eventActive) // Solo si no hay evento activo
+        if (gameManager != null && gameManager.CurrentScore >= lastScore + 50 && !eventActive) // Solo si no hay evento activo
         {
             lastScore = gameManager.CurrentScore;
             TriggerRandomEvent();
@@ -33,7 +33,7 @@ public class RandomEvents : MonoBehaviour
     {
         eventActive = true; // Bloquear nuevos eventos hasta que termine
 
-        int randomEvent = Random.Range(1,1); // 0 = rebote, 1 = explosión
+        int randomEvent = Random.Range(0,2); // 0 = rebote, 1 = explosión
 
         if (randomEvent == 0 && bouncyEffect != null && !bouncyEffect.IsBouncyActive)
         {

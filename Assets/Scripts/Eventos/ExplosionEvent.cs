@@ -3,7 +3,7 @@ using System.Collections;
 
 public class ExplosionEvent : MonoBehaviour
 {
-    public float explosionForce = 500f; // Fuerza de la explosión
+    public float explosionForce = 1000f; // Fuerza de la explosión
     public float explosionRadius = 2f; // Radio de la explosión
     public float eventDuration = 3f; // Duración total del evento
     public LayerMask mineralLayer; // Capas de los minerales
