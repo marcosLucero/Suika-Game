@@ -55,7 +55,7 @@ public class ExplosionEvent : MonoBehaviour
                 {
                     audioSource.Stop();
                 }
-                yield break;
+                yield break; // Terminar el evento si el mineral es destruido
             }
 
             // Cambiar color poco a poco a rojo
