@@ -5,16 +5,33 @@ using System.Collections.Generic;
 public class VanishingEvent : MonoBehaviour
 {
     private bool isActive = false;
+    private bool isInvisiblePhase = false;
     private float fadeDuration = 5f;
     private float invisibleDuration = 5f;
     private float currentAlpha = 1f; // Controla la transparencia actual
     private List<GameObject> activeMinerals = new List<GameObject>();
 
+    public bool IsEventActive => isActive;
+    public float CurrentAlpha => currentAlpha;
+
     public void TriggerVanishing()
     {
         if (isActive) return;
         isActive = true;
+        isInvisiblePhase = false; // Se asegura de que solo sea true en la fase 2
+        RegisterAllExistingMinerals();
         StartCoroutine(VanishMinerals());
+    }
+
+    private void RegisterAllExistingMinerals()
+    {
+        activeMinerals.Clear();
+        GameObject[] minerals = GameObject.FindGameObjectsWithTag("Mineral");
+
+        foreach (GameObject mineral in minerals)
+        {
+            RegisterNewMineral(mineral);
+        }
     }
 
     IEnumerator VanishMinerals()
@@ -32,11 +49,13 @@ public class VanishingEvent : MonoBehaviour
 
         currentAlpha = 0f;
         ApplyTransparencyToAll(currentAlpha);
+        isInvisiblePhase = true; // Activamos el estado de invisibilidad
 
         // 🔵 Fase 2: Mantener invisibles 5s
         yield return new WaitForSeconds(invisibleDuration);
 
         elapsedTime = 0f;
+        isInvisiblePhase = false; // Finaliza la fase de invisibilidad
 
         // 🟢 Fase 3: Volver a ser visibles en 5s
         while (elapsedTime < fadeDuration)
@@ -54,20 +73,23 @@ public class VanishingEvent : MonoBehaviour
 
     private void ApplyTransparencyToAll(float alpha)
     {
-        activeMinerals.Clear();
-        activeMinerals.AddRange(GameObject.FindGameObjectsWithTag("Mineral"));
-
-        foreach (GameObject mineral in activeMinerals)
+        for (int i = activeMinerals.Count - 1; i >= 0; i--)
         {
-            if (mineral != null)
+            if (activeMinerals[i] == null)
             {
-                ApplyTransparency(mineral, alpha);
+                activeMinerals.RemoveAt(i);
+            }
+            else
+            {
+                ApplyTransparency(activeMinerals[i], alpha);
             }
         }
     }
 
     private void ApplyTransparency(GameObject mineral, float alpha)
     {
+        if (mineral == null) return;
+
         SpriteRenderer renderer = mineral.GetComponent<SpriteRenderer>();
         if (renderer != null)
         {
@@ -79,14 +101,19 @@ public class VanishingEvent : MonoBehaviour
 
     public void RegisterNewMineral(GameObject mineral)
     {
-        if (mineral != null)
+        if (mineral != null && !activeMinerals.Contains(mineral))
         {
-            if (isActive)
+            activeMinerals.Add(mineral);
+
+            // Si estamos en la fase de invisibilidad, el mineral debe ser transparente de inmediato
+            if (isInvisiblePhase)
             {
-                // Si estamos en la fase de invisibilidad, hacer el mineral completamente invisible
+                ApplyTransparency(mineral, 0f);
+            }
+            else
+            {
                 ApplyTransparency(mineral, currentAlpha);
             }
         }
     }
-
 }
