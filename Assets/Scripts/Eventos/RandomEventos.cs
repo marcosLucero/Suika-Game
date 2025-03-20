@@ -33,7 +33,7 @@ public class RandomEvents : MonoBehaviour
     {
         eventActive = true; // Bloquear nuevos eventos hasta que termine
 
-        int randomEvent = Random.Range(0, 2); // 0 = rebote, 1 = explosión
+        int randomEvent = Random.Range(1,1); // 0 = rebote, 1 = explosión
 
         if (randomEvent == 0 && bouncyEffect != null && !bouncyEffect.IsBouncyActive)
         {
@@ -45,7 +45,7 @@ public class RandomEvents : MonoBehaviour
         {
             Debug.Log("Evento activado: Explosión");
             explosionEvent.TriggerExplosion();
-            Invoke(nameof(ResetEvent), 2f); // Esperar 2 segundos (ajústalo si la explosión dura más)
+            Invoke(nameof(ResetEvent), 4f); // Esperar 3 segundos (ajústalo si la explosión dura más)
         }
         else
         {

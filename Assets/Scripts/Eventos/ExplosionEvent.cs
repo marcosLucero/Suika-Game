@@ -1,12 +1,20 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using System.Collections;
 
 public class ExplosionEvent : MonoBehaviour
 {
-    public float explosionForce = 500f; // Fuerza de la explosión
-    public float explosionRadius = 2f; // Radio de la explosión
-    public float warningTime = 2f; // Tiempo antes de la explosión
+    public float explosionForce = 500f; // Fuerza de la explosiÃ³n
+    public float explosionRadius = 2f; // Radio de la explosiÃ³n
+    public float eventDuration = 3f; // DuraciÃ³n total del evento
     public LayerMask mineralLayer; // Capas de los minerales
+
+    public AudioClip explosionSound; // Sonido de la explosiÃ³n
+    private AudioSource audioSource; // Componente de audio
+
+    private void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
 
     public void TriggerExplosion()
     {
@@ -18,7 +26,13 @@ public class ExplosionEvent : MonoBehaviour
         // Seleccionar un mineral aleatorio
         GameObject selectedMineral = minerals[Random.Range(0, minerals.Length)];
 
-        // Iniciar la cuenta regresiva para la explosión
+        // ðŸ”Š Reproducir sonido de explosiÃ³n
+        if (audioSource != null && explosionSound != null)
+        {
+            audioSource.PlayOneShot(explosionSound);
+        }
+
+        // Iniciar la cuenta regresiva para la explosiÃ³n
         StartCoroutine(ExplosionCountdown(selectedMineral));
     }
 
@@ -31,19 +45,36 @@ public class ExplosionEvent : MonoBehaviour
         Color originalColor = mineralRenderer.color;
         Color targetColor = Color.red;
 
-        while (elapsedTime < warningTime)
+        while (elapsedTime < eventDuration)
         {
+            // Verificar si el mineral ha sido destruido antes de terminar la cuenta atrÃ¡s
+            if (mineral == null)
+            {
+                // Detener el sonido si el mineral ya no existe
+                if (audioSource.isPlaying)
+                {
+                    audioSource.Stop();
+                }
+                yield break;
+            }
+
             // Cambiar color poco a poco a rojo
-            mineralRenderer.color = Color.Lerp(originalColor, targetColor, elapsedTime / warningTime);
+            mineralRenderer.color = Color.Lerp(originalColor, targetColor, elapsedTime / eventDuration);
             elapsedTime += Time.deltaTime;
             yield return null;
         }
 
-        // Asegurar que el color sea rojo al explotar
-        mineralRenderer.color = targetColor;
+        // Asegurar que el color sea rojo antes de explotar
+        if (mineral != null) // Verificar si el mineral sigue existiendo
+        {
+            mineralRenderer.color = targetColor;
 
-        // Aplicar explosión
-        Explode(mineral);
+            // Aplicar explosiÃ³n
+            Explode(mineral);
+
+            // Destruir el mineral
+            Destroy(mineral);
+        }
     }
 
     void Explode(GameObject mineral)
@@ -58,15 +89,10 @@ public class ExplosionEvent : MonoBehaviour
             Rigidbody2D rb = hit.GetComponent<Rigidbody2D>();
             if (rb != null)
             {
-                // Aplicar una fuerza de explosión
+                // Aplicar una fuerza de explosiÃ³n
                 Vector2 direction = (hit.transform.position - (Vector3)explosionPosition).normalized;
                 rb.AddForce(direction * explosionForce);
             }
         }
-
-        // Destruir el mineral que explotó
-        Destroy(mineral);
-
-        // (Opcional) Agregar efectos visuales de explosión aquí
     }
 }
