@@ -69,6 +69,7 @@ public class ThrowMineralController : MonoBehaviour
             newMineral.transform.SetParent(_parienteAntesThrow);
             newMineral.transform.localScale = MineralActual.transform.localScale; // Mantener escala
 
+
             Destroy(MineralActual);
 
             CanThrow = false;
@@ -77,6 +78,7 @@ public class ThrowMineralController : MonoBehaviour
 
     public void SpamMinerles(GameObject mineral)
     {
+
         if (mineral == null)
         {
             Debug.LogError("❌ Error: No se puede instanciar un mineral null.");
@@ -97,5 +99,11 @@ public class ThrowMineralController : MonoBehaviour
         }
 
         _playerController.ChangeBoundary(Extra_width);
+
+        VanishingEvent vanishingEvent = FindObjectOfType<VanishingEvent>();
+        if (vanishingEvent != null)
+        {
+            vanishingEvent.RegisterNewMineral(go);
+        }
     }
 }
