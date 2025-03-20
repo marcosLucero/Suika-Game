@@ -8,6 +8,8 @@ public class RandomEvents : MonoBehaviour
     private ExplosionEvent explosionEvent;
     private GhostModeEvent ghostModeEvent; // Nuevo evento
     private bool eventActive = false; // Indica si un evento está en curso
+    private VanishingEvent vanishingEvent; // Nueva referencia
+
 
     private void Start()
     {
@@ -15,6 +17,8 @@ public class RandomEvents : MonoBehaviour
         bouncyEffect = FindObjectOfType<BouncyEffect>();
         explosionEvent = FindObjectOfType<ExplosionEvent>();
         ghostModeEvent = FindObjectOfType<GhostModeEvent>(); // Referencia al nuevo evento
+        vanishingEvent = FindObjectOfType<VanishingEvent>();
+
 
         if (gameManager != null)
         {
@@ -24,7 +28,7 @@ public class RandomEvents : MonoBehaviour
 
     private void Update()
     {
-        if (gameManager != null && gameManager.CurrentScore >= lastScore + 50
+        if (gameManager != null && gameManager.CurrentScore >= lastScore + 10
             && !eventActive) // Solo si no hay evento activo
         {
             lastScore = gameManager.CurrentScore;
@@ -36,7 +40,7 @@ public class RandomEvents : MonoBehaviour
     {
         eventActive = true; // Bloquear nuevos eventos hasta que termine
 
-        int randomEvent = Random.Range(0, 3); // Ahora hay 3 eventos posibles (0 = rebote, 1 = explosión, 2 = modo fantasma)
+        int randomEvent = Random.Range(3, 4); // Ahora hay 3 eventos posibles (0 = rebote, 1 = explosión, 2 = modo fantasma)
 
         if (randomEvent == 0 && bouncyEffect != null && !bouncyEffect.IsBouncyActive)
         {
@@ -55,6 +59,12 @@ public class RandomEvents : MonoBehaviour
             Debug.Log("Evento activado: Modo Fantasma (5s sin jugador)");
             ghostModeEvent.TriggerGhostMode();
             Invoke(nameof(ResetEvent), 5f); // Esperar 5 segundos hasta que el jugador reaparezca
+        }
+        else if (randomEvent == 3 && vanishingEvent != null)
+        {
+            Debug.Log("Evento activado: Modo Desvanecimiento");
+            vanishingEvent.TriggerVanishing();
+            Invoke(nameof(ResetEvent), 10f); // 10s de duración total
         }
         else
         {
