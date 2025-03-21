@@ -28,7 +28,7 @@ public class RandomEvents : MonoBehaviour
 
     private void Update()
     {
-        if (gameManager != null && gameManager.CurrentScore >= lastScore + 10
+        if (gameManager != null && gameManager.CurrentScore >= lastScore + 50
             && !eventActive) // Solo si no hay evento activo
         {
             lastScore = gameManager.CurrentScore;
@@ -40,7 +40,7 @@ public class RandomEvents : MonoBehaviour
     {
         eventActive = true; // Bloquear nuevos eventos hasta que termine
 
-        int randomEvent = Random.Range(3, 4); // Ahora hay 3 eventos posibles (0 = rebote, 1 = explosión, 2 = modo fantasma)
+        int randomEvent = Random.Range(0, 4); // Ahora hay 3 eventos posibles (0 = rebote, 1 = explosión, 2 = modo fantasma)
 
         if (randomEvent == 0 && bouncyEffect != null && !bouncyEffect.IsBouncyActive)
         {
