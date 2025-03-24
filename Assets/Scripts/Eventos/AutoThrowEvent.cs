@@ -11,8 +11,8 @@ public class AutoThrowEvent : MonoBehaviour
     {
         if (!isActive)
         {
-            isActive = true;
             StartCoroutine(AutoThrowCoroutine());
+            isActive = true;
         }
     }
 

@@ -21,6 +21,7 @@ public class ThrowMineralController : MonoBehaviour
     private const float Extra_width = 0.2f;
 
     public bool CanThrow { get; set; } = true;
+    private int eventActive = 0;
 
     private void Awake()
     {
@@ -52,27 +53,30 @@ public class ThrowMineralController : MonoBehaviour
 
     private void Update()
     {
-        if (UserInput.IsThrowPressed && CanThrow)
+        if (eventActive == 0)
         {
-            if (MineralActual == null)
+            if (UserInput.IsThrowPressed && CanThrow)
             {
-                Debug.LogError("❌ Error: MineralActual es null. No se puede lanzar.");
-                return;
+                if (MineralActual == null)
+                {
+                    Debug.LogError("❌ Error: MineralActual es null. No se puede lanzar.");
+                    return;
+                }
+
+                SpriteIndex index = MineralActual.GetComponent<SpriteIndex>();
+                Quaternion rot = MineralActual.transform.rotation;
+
+                GameObject newMineral = Instantiate(MineralesSelector.Instance.Minerales[index.Index],
+                                                     MineralActual.transform.position, rot);
+
+                newMineral.transform.SetParent(_parienteAntesThrow);
+                newMineral.transform.localScale = MineralActual.transform.localScale; // Mantener escala
+
+
+                Destroy(MineralActual);
+
+                CanThrow = false;
             }
-
-            SpriteIndex index = MineralActual.GetComponent<SpriteIndex>();
-            Quaternion rot = MineralActual.transform.rotation;
-
-            GameObject newMineral = Instantiate(MineralesSelector.Instance.Minerales[index.Index],
-                                                 MineralActual.transform.position, rot);
-
-            newMineral.transform.SetParent(_parienteAntesThrow);
-            newMineral.transform.localScale = MineralActual.transform.localScale; // Mantener escala
-
-
-            Destroy(MineralActual);
-
-            CanThrow = false;
         }
     }
 
@@ -105,5 +109,9 @@ public class ThrowMineralController : MonoBehaviour
         {
             vanishingEvent.RegisterNewMineral(go);
         }
+    }
+    public void isEventActive( int value)
+    {
+        eventActive = value;
     }
 }

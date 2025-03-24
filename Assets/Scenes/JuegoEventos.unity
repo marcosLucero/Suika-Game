@@ -5146,6 +5146,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ghostDuration: 5
+  _spriteRenderer: {fileID: 1800692394}
+  childA: {fileID: 0}
 --- !u!114 &1385033050
 MonoBehaviour:
   m_ObjectHideFlags: 0
