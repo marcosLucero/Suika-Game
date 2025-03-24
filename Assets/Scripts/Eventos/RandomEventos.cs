@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public class RandomEvents : MonoBehaviour
 {
@@ -6,19 +6,19 @@ public class RandomEvents : MonoBehaviour
     private GameManager gameManager;
     private BouncyEffect bouncyEffect;
     private ExplosionEvent explosionEvent;
-    private GhostModeEvent ghostModeEvent; // Nuevo evento
-    private bool eventActive = false; // Indica si un evento está en curso
-    private VanishingEvent vanishingEvent; // Nueva referencia
-
+    private GhostModeEvent ghostModeEvent;
+    private VanishingEvent vanishingEvent;
+    private AutoThrowEvent autoThrowEvent;
+    private bool eventActive = false; // Indica si un evento estÃ¡ en curso
 
     private void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
         bouncyEffect = FindObjectOfType<BouncyEffect>();
         explosionEvent = FindObjectOfType<ExplosionEvent>();
-        ghostModeEvent = FindObjectOfType<GhostModeEvent>(); // Referencia al nuevo evento
+        ghostModeEvent = FindObjectOfType<GhostModeEvent>();
         vanishingEvent = FindObjectOfType<VanishingEvent>();
-
+        autoThrowEvent = FindObjectOfType<AutoThrowEvent>();
 
         if (gameManager != null)
         {
@@ -28,10 +28,11 @@ public class RandomEvents : MonoBehaviour
 
     private void Update()
     {
-        if (gameManager != null && gameManager.CurrentScore >= lastScore + 50
-            && !eventActive) // Solo si no hay evento activo
+        // ðŸ›‘ No activar eventos si hay uno en curso
+        if (eventActive || gameManager == null) return;
+
+        if (gameManager.CurrentScore >= lastScore + 5)
         {
-            lastScore = gameManager.CurrentScore;
             TriggerRandomEvent();
         }
     }
@@ -40,41 +41,50 @@ public class RandomEvents : MonoBehaviour
     {
         eventActive = true; // Bloquear nuevos eventos hasta que termine
 
-        int randomEvent = Random.Range(0, 4); // Ahora hay 3 eventos posibles (0 = rebote, 1 = explosión, 2 = modo fantasma)
+        int randomEvent = Random.Range(3, 5); // 5 eventos posibles
 
         if (randomEvent == 0 && bouncyEffect != null && !bouncyEffect.IsBouncyActive)
         {
             Debug.Log("Evento activado: Rebote alto por 10 segundos");
             bouncyEffect.ActivateBouncyEffect(10f);
-            Invoke(nameof(ResetEvent), 10f); // Esperar 10 segundos antes de permitir otro evento
+            Invoke(nameof(ResetEvent), 10f);
         }
         else if (randomEvent == 1 && explosionEvent != null)
         {
-            Debug.Log("Evento activado: Explosión");
+            Debug.Log("Evento activado: ExplosiÃ³n");
             explosionEvent.TriggerExplosion();
-            Invoke(nameof(ResetEvent), 4f); // Esperar 4 segundos hasta que termine el evento
+            Invoke(nameof(ResetEvent), 4f);
         }
-        else if (randomEvent == 2 && ghostModeEvent != null)
+        else if (randomEvent == 3 && ghostModeEvent != null)
         {
             Debug.Log("Evento activado: Modo Fantasma (5s sin jugador)");
             ghostModeEvent.TriggerGhostMode();
-            Invoke(nameof(ResetEvent), 5f); // Esperar 5 segundos hasta que el jugador reaparezca
+            Invoke(nameof(ResetEvent), 5f);
         }
-        else if (randomEvent == 3 && vanishingEvent != null)
+        else if (randomEvent == 2 && vanishingEvent != null)
         {
             Debug.Log("Evento activado: Modo Desvanecimiento");
             vanishingEvent.TriggerVanishing();
-            Invoke(nameof(ResetEvent), 10f); // 10s de duración total
+            Invoke(nameof(ResetEvent), 10f);
+        }
+        else if (randomEvent == 4 && autoThrowEvent != null)
+        {
+            Debug.Log("Evento activado: Lanzamiento automÃ¡tico por 10s");
+            autoThrowEvent.StartAutoThrow();
+            Invoke(nameof(ResetEvent), 10f);
         }
         else
         {
-            // Si no se activó ningún evento, desbloquear para permitir otro intento
-            eventActive = false;
+            eventActive = false; // Si no se activÃ³ nada, permitir otro intento
         }
     }
 
     private void ResetEvent()
     {
         eventActive = false; // Permitir un nuevo evento
+        if (gameManager != null)
+        {
+            lastScore = gameManager.CurrentScore; // ðŸ”¥ Ahora los puntos solo cuentan despuÃ©s de que el evento termine
+        }
     }
 }
