@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class TriggerLoss : MonoBehaviour
 {
-    private float _timer = 0f;
+    private float _timer = 5f;
 
     private void OnTriggerStay2D(Collider2D collision)
     {

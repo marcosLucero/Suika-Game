@@ -647,7 +647,7 @@ MonoBehaviour:
   _finalScoreText: {fileID: 1535182355}
   _fadeTime: 2
   TimeTillGamerOver: 1.5
-  firebaseManager: {fileID: 317331783}
+  firebaseManager: {fileID: 0}
   playerName: Jugador
 --- !u!114 &61382738
 MonoBehaviour:
@@ -1889,7 +1889,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 317331784}
-  - component: {fileID: 317331783}
+  - component: {fileID: 317331785}
   m_Layer: 0
   m_Name: DataBaseManager
   m_TagString: Untagged
@@ -1897,19 +1897,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &317331783
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 317331782}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc09313ba777ce2448752970e781b6ed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerNameInput: {fileID: 1602607727}
 --- !u!4 &317331784
 Transform:
   m_ObjectHideFlags: 0
@@ -1925,6 +1912,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &317331785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 317331782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb930f9ea6a8e6a4584bdb222246ddf0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerNameInput: {fileID: 1602607727}
 --- !u!1 &342500817
 GameObject:
   m_ObjectHideFlags: 0
@@ -3813,8 +3813,8 @@ GameObject:
   m_Component:
   - component: {fileID: 857878717}
   - component: {fileID: 857878718}
-  - component: {fileID: 857878719}
   - component: {fileID: 857878720}
+  - component: {fileID: 857878721}
   m_Layer: 5
   m_Name: Leaderboard
   m_TagString: Untagged
@@ -3869,7 +3869,15 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!114 &857878719
+--- !u!222 &857878720
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 857878716}
+  m_CullTransparentMesh: 1
+--- !u!114 &857878721
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3878,7 +3886,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 857878716}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c703189a13a22440bbd3951cee5686b, type: 3}
+  m_Script: {fileID: 11500000, guid: acb2650454662334da7689fb0d0f5578, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   nombres:
@@ -3893,14 +3901,6 @@ MonoBehaviour:
   - {fileID: 104209167}
   - {fileID: 1864643752}
   - {fileID: 704729777}
---- !u!222 &857878720
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 857878716}
-  m_CullTransparentMesh: 1
 --- !u!1 &865268693
 GameObject:
   m_ObjectHideFlags: 0
