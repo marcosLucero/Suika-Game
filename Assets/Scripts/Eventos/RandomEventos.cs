@@ -10,6 +10,8 @@ public class RandomEvents : MonoBehaviour
     private VanishingEvent vanishingEvent;
     private AutoThrowEvent autoThrowEvent;
     private bool eventActive = false; // Indica si un evento está en curso
+    private SpeedUpEvent speedUpEvent;
+
 
     private void Start()
     {
@@ -18,6 +20,7 @@ public class RandomEvents : MonoBehaviour
         explosionEvent = FindObjectOfType<ExplosionEvent>();
         ghostModeEvent = FindObjectOfType<GhostModeEvent>();
         vanishingEvent = FindObjectOfType<VanishingEvent>();
+        speedUpEvent = FindObjectOfType<SpeedUpEvent>();
         autoThrowEvent = FindObjectOfType<AutoThrowEvent>();
 
         if (gameManager != null)
@@ -31,7 +34,7 @@ public class RandomEvents : MonoBehaviour
         // 🛑 No activar eventos si hay uno en curso
         if (eventActive || gameManager == null) return;
 
-        if (gameManager.CurrentScore >= lastScore + 5)
+        if (gameManager.CurrentScore >= lastScore + 50)
         {
             TriggerRandomEvent();
         }
@@ -41,7 +44,7 @@ public class RandomEvents : MonoBehaviour
     {
         eventActive = true; // Bloquear nuevos eventos hasta que termine
 
-        int randomEvent = Random.Range(3, 5); // 5 eventos posibles
+        int randomEvent = Random.Range(0, 6); // 6 eventos posibles
 
         if (randomEvent == 0 && bouncyEffect != null && !bouncyEffect.IsBouncyActive)
         {
@@ -55,13 +58,13 @@ public class RandomEvents : MonoBehaviour
             explosionEvent.TriggerExplosion();
             Invoke(nameof(ResetEvent), 4f);
         }
-        else if (randomEvent == 3 && ghostModeEvent != null)
+        else if (randomEvent == 2 && ghostModeEvent != null)
         {
             Debug.Log("Evento activado: Modo Fantasma (5s sin jugador)");
             ghostModeEvent.TriggerGhostMode();
             Invoke(nameof(ResetEvent), 5f);
         }
-        else if (randomEvent == 2 && vanishingEvent != null)
+        else if (randomEvent == 3 && vanishingEvent != null)
         {
             Debug.Log("Evento activado: Modo Desvanecimiento");
             vanishingEvent.TriggerVanishing();
@@ -72,6 +75,12 @@ public class RandomEvents : MonoBehaviour
             Debug.Log("Evento activado: Lanzamiento automático por 10s");
             autoThrowEvent.StartAutoThrow();
             Invoke(nameof(ResetEvent), 10f);
+        }
+        else if (randomEvent == 5 && speedUpEvent != null)
+        {
+            Debug.Log("Evento activado: Modo Turbo");
+            speedUpEvent.TriggerSpeedUp();
+            Invoke(nameof(ResetEvent), 8f);
         }
         else
         {

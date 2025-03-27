@@ -308,7 +308,7 @@ GameObject:
   - component: {fileID: 88282475}
   - component: {fileID: 88282474}
   m_Layer: 5
-  m_Name: BotonVS_IA
+  m_Name: BotonEventos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -377,7 +377,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 88282475}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 68145486}
+        m_TargetAssemblyTypeName: JugarSolo, Assembly-CSharp
+        m_MethodName: LoadGameScene
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: JuegoEventos
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &88282475
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -923,7 +935,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Jugar vs IA
+  m_Text: Jugar Eventos
 --- !u!222 &965529735
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1099,7 +1111,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: EscenaJuegoSolo
+          m_StringArgument: JuegoSolo
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1056386413
