@@ -12,6 +12,10 @@ public class NameInputHandler : MonoBehaviour
 
     private void Start()
     {
+        if (nameInputField != null)
+        {
+            nameInputField.characterLimit = 6; // Limita a 9 caracteres
+        }
         if (submitButton != null)
         {
             submitButton.onClick.AddListener(SubmitName);
