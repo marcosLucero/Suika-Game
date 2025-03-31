@@ -647,7 +647,7 @@ MonoBehaviour:
   _finalScoreText: {fileID: 1535182355}
   _fadeTime: 2
   levelOne: 0
-  TimeTillGamerOver: 1.5
+  TimeTillGamerOver: 2
   firebaseManager: {fileID: 0}
   HardModeLeaderboardManager: {fileID: 317331785}
   playerName: Jugador
