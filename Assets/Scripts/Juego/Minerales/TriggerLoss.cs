@@ -3,11 +3,11 @@ using UnityEngine;
 
 public class TriggerLoss : MonoBehaviour
 {
-    private float _timer = 5f;
+    private float _timer = 0f;
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.layer == 7)  // Asegúrate de que esta sea la capa correcta
+        if (collision.gameObject.layer == 10)  // Asegúrate de que esta sea la capa correcta
         {
             _timer += Time.deltaTime;
 
@@ -22,7 +22,7 @@ public class TriggerLoss : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.layer == 7)  // Asegúrate de que esta sea la capa correcta
+        if (collision.gameObject.layer == 10)  // Asegúrate de que esta sea la capa correcta
         {
             _timer = 0f;  // Reiniciamos el temporizador cuando el jugador sale de la zona
         }
