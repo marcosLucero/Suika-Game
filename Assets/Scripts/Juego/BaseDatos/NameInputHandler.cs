@@ -34,6 +34,11 @@ public class NameInputHandler : MonoBehaviour
         if (!string.IsNullOrWhiteSpace(playerName))
         {
             Debug.Log("Nombre ingresado: " + playerName);
+
+            // Desactivar el campo de entrada y el botón de envío
+            nameInputField.interactable = false;
+            submitButton.interactable = false;
+
             ShowConfirmationMessage();
         }
         else
@@ -41,6 +46,7 @@ public class NameInputHandler : MonoBehaviour
             Debug.Log("Por favor, ingresa un nombre válido.");
         }
     }
+
 
     private void ShowConfirmationMessage()
     {
