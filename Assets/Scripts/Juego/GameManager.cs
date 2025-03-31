@@ -17,12 +17,14 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject _player; // Referencia al objeto player
     [SerializeField] private TextMeshProUGUI _finalScoreText; // Texto "Tu puntuación: X"
     [SerializeField] private float _fadeTime = 2f;
+    public bool levelOne;
 
     // Tiempo hasta el game over
     public float TimeTillGamerOver = 1.5f;  // Aquí definimos el tiempo en segundos
 
     // Referencia al FirebaseManager
     public FirebaseManager firebaseManager;
+    public FirebaseHardModeManager HardModeLeaderboardManager;
 
     // Nombre del jugador (esto lo puedes obtener de un Text Input si lo deseas)
     public string playerName = "Jugador";
@@ -34,10 +36,10 @@ public class GameManager : MonoBehaviour
             Instance = this;
         }
 
-        if (firebaseManager == null)
+       /* if (firebaseManager == null)
         {
             firebaseManager = FindObjectOfType<FirebaseManager>(); // Buscar el componente FirebaseManager en la escena
-        }
+        }*/
 
         _scoreText.text = CurrentScore.ToString("0");
 
@@ -61,10 +63,19 @@ public class GameManager : MonoBehaviour
             playerName = "Jugador_" + UnityEngine.Random.Range(1000, 9999); // Nombre por defecto
 
         Debug.Log("Nombre enviado a Firebase desde GameManager: " + playerName);
-
-        if (firebaseManager != null)
+        if (levelOne)
         {
-            firebaseManager.SavePlayerData(playerName, CurrentScore);
+            if (firebaseManager != null)
+            {
+                firebaseManager.SavePlayerData(playerName, CurrentScore);
+            }
+        }
+        else
+        {
+            if (HardModeLeaderboardManager != null)
+            {
+                HardModeLeaderboardManager.SaveHardModePlayerData(playerName, CurrentScore);
+            }
         }
     }
 
