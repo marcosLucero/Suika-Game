@@ -6,7 +6,7 @@ using System;
 public class SlotMachine : MonoBehaviour
 {
     public RectTransform slotContainer;
-    public float spinSpeed = 1000f;
+    public float spinSpeed = 500f;
     public float slowDownTime = 2f;
     public Sprite[] slotImages;
     private bool isSpinning = false;
@@ -33,8 +33,7 @@ public class SlotMachine : MonoBehaviour
         while (timeElapsed < slowDownTime)
         {
             timeElapsed += Time.deltaTime;
-            currentSpeed = Mathf.Lerp(spinSpeed, 0, timeElapsed / slowDownTime);
-
+            currentSpeed = spinSpeed * Mathf.Pow(1 - (timeElapsed / slowDownTime), 3);
             slotContainer.anchoredPosition -= new Vector2(0, currentSpeed * Time.deltaTime);
             resultIndex = UnityEngine.Random.Range(0, slotImages.Length);
             slotContainer.GetComponent<Image>().sprite = slotImages[resultIndex];
