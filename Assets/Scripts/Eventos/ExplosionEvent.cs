@@ -14,6 +14,13 @@ public class ExplosionEvent : MonoBehaviour
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
+
+        // 🟡 Registrar el AudioSource al SoundManager para control de mute
+        if (audioSource != null)
+        {
+            SoundManager.Instance?.RegisterAudioSource(audioSource);
+            audioSource.mute = SoundManager.Instance?.IsMuted() ?? false;
+        }
     }
 
     public void TriggerExplosion()
@@ -26,7 +33,7 @@ public class ExplosionEvent : MonoBehaviour
         // Seleccionar un mineral aleatorio
         GameObject selectedMineral = minerals[Random.Range(0, minerals.Length)];
 
-        // 🔊 Reproducir sonido de explosión
+        // 🔊 Reproducir sonido de explosión (solo si no está muteado)
         if (audioSource != null && explosionSound != null)
         {
             audioSource.PlayOneShot(explosionSound);
@@ -50,29 +57,22 @@ public class ExplosionEvent : MonoBehaviour
             // Verificar si el mineral ha sido destruido antes de terminar la cuenta atrás
             if (mineral == null)
             {
-                // Detener el sonido si el mineral ya no existe
-                if (audioSource.isPlaying)
+                if (audioSource != null && audioSource.isPlaying)
                 {
                     audioSource.Stop();
                 }
-                yield break; // Terminar el evento si el mineral es destruido
+                yield break;
             }
 
-            // Cambiar color poco a poco a rojo
             mineralRenderer.color = Color.Lerp(originalColor, targetColor, elapsedTime / eventDuration);
             elapsedTime += Time.deltaTime;
             yield return null;
         }
 
-        // Asegurar que el color sea rojo antes de explotar
-        if (mineral != null) // Verificar si el mineral sigue existiendo
+        if (mineral != null)
         {
             mineralRenderer.color = targetColor;
-
-            // Aplicar explosión
             Explode(mineral);
-
-            // Destruir el mineral
             Destroy(mineral);
         }
     }
@@ -80,8 +80,6 @@ public class ExplosionEvent : MonoBehaviour
     void Explode(GameObject mineral)
     {
         Vector2 explosionPosition = mineral.transform.position;
-
-        // Detectar minerales cercanos
         Collider2D[] hitColliders = Physics2D.OverlapCircleAll(explosionPosition, explosionRadius, mineralLayer);
 
         foreach (Collider2D hit in hitColliders)
@@ -89,7 +87,6 @@ public class ExplosionEvent : MonoBehaviour
             Rigidbody2D rb = hit.GetComponent<Rigidbody2D>();
             if (rb != null)
             {
-                // Aplicar una fuerza de explosión
                 Vector2 direction = (hit.transform.position - (Vector3)explosionPosition).normalized;
                 rb.AddForce(direction * explosionForce);
             }

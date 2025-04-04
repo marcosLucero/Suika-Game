@@ -15,6 +15,16 @@ public class SlotMachine : MonoBehaviour
     private int resultIndex = 0;
     private Action<int> onSpinComplete;
 
+    private void Start()
+    {
+        // 🎵 Registrar el sonido en el SoundManager
+        if (spinSound != null && SoundManager.Instance != null)
+        {
+            SoundManager.Instance.RegisterAudioSource(spinSound);
+            spinSound.mute = SoundManager.Instance.IsMuted(); // aplicar estado actual
+        }
+    }
+
     public void StartSpin(Action<int> callback)
     {
         if (!isSpinning)
