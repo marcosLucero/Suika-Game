@@ -11,8 +11,7 @@ public class RandomEvents : MonoBehaviour
     private AutoThrowEvent autoThrowEvent;
     private bool eventActive = false; // Indica si un evento está en curso
     private SpeedUpEvent speedUpEvent;
-
-
+    private SlotMachine slotMachine;
     private void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
@@ -22,6 +21,7 @@ public class RandomEvents : MonoBehaviour
         vanishingEvent = FindObjectOfType<VanishingEvent>();
         speedUpEvent = FindObjectOfType<SpeedUpEvent>();
         autoThrowEvent = FindObjectOfType<AutoThrowEvent>();
+        slotMachine = FindObjectOfType<SlotMachine>();
 
         if (gameManager != null)
         {
@@ -34,66 +34,86 @@ public class RandomEvents : MonoBehaviour
         // 🛑 No activar eventos si hay uno en curso
         if (eventActive || gameManager == null) return;
 
-        if (gameManager.CurrentScore >= lastScore + 50)
+        if (gameManager.CurrentScore >= lastScore + 5)
         {
-            TriggerRandomEvent();
+            //TriggerRandomEvent();
+            StartEventWithSlot();
+        }
+    }
+     private void StartEventWithSlot()
+    {
+        eventActive = true; // Bloqueamos nuevos eventos
+        if (slotMachine != null)
+        {
+            slotMachine.StartSpin(TriggerEventFromSlot); // 📌 Inicia la ruleta y espera el resultado
         }
     }
 
-    private void TriggerRandomEvent()
+    private void TriggerEventFromSlot(int resultIndex)
     {
-        eventActive = true; // Bloquear nuevos eventos hasta que termine
-
-        int randomEvent = Random.Range(0, 6); // 6 eventos posibles
-
-        if (randomEvent == 0 && bouncyEffect != null && !bouncyEffect.IsBouncyActive)
+        switch (resultIndex)
         {
-            Debug.Log("Evento activado: Rebote alto por 10 segundos");
-            bouncyEffect.ActivateBouncyEffect(10f);
-            Invoke(nameof(ResetEvent), 10f);
-        }
-        else if (randomEvent == 1 && explosionEvent != null)
-        {
-            Debug.Log("Evento activado: Explosión");
-            explosionEvent.TriggerExplosion();
-            Invoke(nameof(ResetEvent), 4f);
-        }
-        else if (randomEvent == 2 && ghostModeEvent != null)
-        {
-            Debug.Log("Evento activado: Modo Fantasma (5s sin jugador)");
-            ghostModeEvent.TriggerGhostMode();
-            Invoke(nameof(ResetEvent), 5f);
-        }
-        else if (randomEvent == 3 && vanishingEvent != null)
-        {
-            Debug.Log("Evento activado: Modo Desvanecimiento");
-            vanishingEvent.TriggerVanishing();
-            Invoke(nameof(ResetEvent), 10f);
-        }
-        else if (randomEvent == 4 && autoThrowEvent != null)
-        {
-            Debug.Log("Evento activado: Lanzamiento automático por 10s");
-            autoThrowEvent.StartAutoThrow();
-            Invoke(nameof(ResetEvent), 10f);
-        }
-        else if (randomEvent == 5 && speedUpEvent != null)
-        {
-            Debug.Log("Evento activado: Modo Turbo");
-            speedUpEvent.TriggerSpeedUp();
-            Invoke(nameof(ResetEvent), 8f);
-        }
-        else
-        {
-            eventActive = false; // Si no se activó nada, permitir otro intento
+            case 0:
+                if (bouncyEffect != null && !bouncyEffect.IsBouncyActive)
+                {
+                    Debug.Log("Evento: Rebote alto por 10 segundos");
+                    bouncyEffect.ActivateBouncyEffect(10f);
+                    Invoke(nameof(ResetEvent), 10f);
+                }
+                break;
+            case 1:
+                if (explosionEvent != null)
+                {
+                    Debug.Log("Evento: Explosión");
+                    explosionEvent.TriggerExplosion();
+                    Invoke(nameof(ResetEvent), 4f);
+                }
+                break;
+            case 2:
+                if (ghostModeEvent != null)
+                {
+                    Debug.Log("Evento: Modo Fantasma (5s sin jugador)");
+                    ghostModeEvent.TriggerGhostMode();
+                    Invoke(nameof(ResetEvent), 5f);
+                }
+                break;
+            case 3:
+                if (vanishingEvent != null)
+                {
+                    Debug.Log("Evento: Modo Desvanecimiento");
+                    vanishingEvent.TriggerVanishing();
+                    Invoke(nameof(ResetEvent), 10f);
+                }
+                break;
+            case 4:
+                if (autoThrowEvent != null)
+                {
+                    Debug.Log("Evento: Lanzamiento automático por 10s");
+                    autoThrowEvent.StartAutoThrow();
+                    Invoke(nameof(ResetEvent), 10f);
+                }
+                break;
+            case 5:
+                if (speedUpEvent != null)
+                {
+                    Debug.Log("Evento: Modo Turbo");
+                    speedUpEvent.TriggerSpeedUp();
+                    Invoke(nameof(ResetEvent), 8f);
+                }
+                break;
+            default:
+                Debug.LogWarning("No se encontró un evento para este índice.");
+                ResetEvent();
+                break;
         }
     }
 
     private void ResetEvent()
     {
-        eventActive = false; // Permitir un nuevo evento
+        eventActive = false;
         if (gameManager != null)
         {
-            lastScore = gameManager.CurrentScore; // 🔥 Ahora los puntos solo cuentan después de que el evento termine
+            lastScore = gameManager.CurrentScore;
         }
     }
 }
