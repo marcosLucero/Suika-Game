@@ -9,21 +9,29 @@ public class SlotMachine : MonoBehaviour
     public float spinSpeed = 500f;
     public float slowDownTime = 2f;
     public Sprite[] slotImages;
+    public AudioSource spinSound; // 🎵 Referencia al sonido
+
     private bool isSpinning = false;
     private int resultIndex = 0;
-    private Action<int> onSpinComplete; // 📌 Callback para notificar el resultado
+    private Action<int> onSpinComplete;
 
     public void StartSpin(Action<int> callback)
     {
         if (!isSpinning)
         {
             isSpinning = true;
+
+            // 🎵 Reproducir el sonido si está asignado
+            if (spinSound != null)
+            {
+                spinSound.Play();
+            }
+
             resultIndex = UnityEngine.Random.Range(0, slotImages.Length);
-            onSpinComplete = callback; // 📌 Guardamos el método a llamar
+            onSpinComplete = callback;
             StartCoroutine(SpinRoutine());
         }
     }
-   
 
     private IEnumerator SpinRoutine()
     {
@@ -48,7 +56,7 @@ public class SlotMachine : MonoBehaviour
 
         AlignToResult();
         isSpinning = false;
-        onSpinComplete?.Invoke(resultIndex); // 📌 Llamamos a `TriggerEventFromSlot`
+        onSpinComplete?.Invoke(resultIndex);
     }
 
     private void AlignToResult()
