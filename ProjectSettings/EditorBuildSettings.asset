@@ -17,6 +17,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/JuegoEventos.unity
     guid: 915be55832d32934c973fcc4f6e11923
+  - enabled: 1
+    path: Assets/Scenes/Guia.unity
+    guid: 8f033f2caa5405b4e8b86b979d68ba24
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.UI;
 using Firebase;
 using Firebase.Extensions;
@@ -26,7 +26,7 @@ public class FirebaseHardModeManager : MonoBehaviour
                 reference = firebaseDatabase.RootReference;
 
                 isFirebaseInitialized = true;
-                Debug.Log("Firebase para Modo Difícil está listo.");
+                Debug.Log("Firebase para Modo DifÃ­cil estÃ¡ listo.");
             }
             else
             {
@@ -39,30 +39,39 @@ public class FirebaseHardModeManager : MonoBehaviour
     {
         if (!isFirebaseInitialized)
         {
-            Debug.LogError("Firebase no está inicializado.");
+            Debug.LogError("Firebase no estÃ¡ inicializado.");
             return;
         }
 
+        string formattedName = FormatName(playerName); // âœ… Aplicamos el formato correcto
+
         string playerId = System.Guid.NewGuid().ToString();
-        HardModePlayerData playerData = new HardModePlayerData(playerName, score);
+        HardModePlayerData playerData = new HardModePlayerData(formattedName, score);
 
         string json = JsonUtility.ToJson(playerData);
         reference.Child("hard_mode_players").Child(playerId).SetRawJsonValueAsync(json);
-        Debug.Log("Guardando en Firebase (Modo Difícil): " + playerName + " | Puntuación: " + score);
+        Debug.Log("Guardando en Firebase (Modo DifÃ­cil): " + formattedName + " | PuntuaciÃ³n: " + score);
+    }
+
+    private string FormatName(string input)
+    {
+        if (string.IsNullOrWhiteSpace(input)) return "";
+        input = input.Trim();
+        return char.ToUpper(input[0]) + input.Substring(1).ToLower();
     }
 
     public void LoadAllHardModePlayers()
     {
         if (!isFirebaseInitialized)
         {
-            Debug.LogError("Firebase no está inicializado.");
+            Debug.LogError("Firebase no estÃ¡ inicializado.");
             return;
         }
 
         reference.Child("hard_mode_players").GetValueAsync().ContinueWithOnMainThread(task => {
             if (task.IsFaulted)
             {
-                Debug.LogError("Error al obtener los datos del Modo Difícil.");
+                Debug.LogError("Error al obtener los datos del Modo DifÃ­cil.");
             }
             else if (task.IsCompleted)
             {
@@ -71,7 +80,7 @@ public class FirebaseHardModeManager : MonoBehaviour
                 {
                     string playerName = playerSnapshot.Child("playerName").Value.ToString();
                     int score = int.Parse(playerSnapshot.Child("score").Value.ToString());
-                    Debug.Log($"Jugador (Modo Difícil): {playerName} | Puntuación: {score}");
+                    Debug.Log($"Jugador (Modo DifÃ­cil): {playerName} | PuntuaciÃ³n: {score}");
                 }
             }
         });

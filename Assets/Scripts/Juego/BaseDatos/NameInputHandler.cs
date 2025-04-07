@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -7,15 +7,16 @@ public class NameInputHandler : MonoBehaviour
 {
     [SerializeField] private TMP_InputField nameInputField;
     [SerializeField] private Button submitButton;
-    [SerializeField] private Button backToMenuButton; // Nuevo botón para volver al menú
+    [SerializeField] private Button backToMenuButton;
     [SerializeField] private TextMeshProUGUI confirmationText;
 
     private void Start()
     {
         if (nameInputField != null)
         {
-            nameInputField.characterLimit = 6; // Limita a 9 caracteres
+            nameInputField.characterLimit = 8; // âœ… Limita a 8 caracteres
         }
+
         if (submitButton != null)
         {
             submitButton.onClick.AddListener(SubmitName);
@@ -34,12 +35,18 @@ public class NameInputHandler : MonoBehaviour
 
     private void SubmitName()
     {
-        string playerName = nameInputField.text;
-        if (!string.IsNullOrWhiteSpace(playerName))
-        {
-            Debug.Log("Nombre ingresado: " + playerName);
+        string rawName = nameInputField.text.Trim();
 
-            // Desactivar el campo de entrada y el botón de envío
+        if (!string.IsNullOrWhiteSpace(rawName))
+        {
+            string formattedName = FormatName(rawName);
+
+            Debug.Log("Nombre ingresado: " + formattedName);
+
+            // Puedes guardar el nombre formateado en PlayerPrefs u otra lÃ³gica
+            PlayerPrefs.SetString("PlayerName", formattedName);
+
+            nameInputField.text = formattedName; // âœ… Mostrarlo en formato correcto
             nameInputField.interactable = false;
             submitButton.interactable = false;
 
@@ -47,10 +54,15 @@ public class NameInputHandler : MonoBehaviour
         }
         else
         {
-            Debug.Log("Por favor, ingresa un nombre válido.");
+            Debug.Log("Por favor, ingresa un nombre vÃ¡lido.");
         }
     }
 
+    private string FormatName(string name)
+    {
+        name = name.ToLower(); // Convertir todo a minÃºsculas
+        return char.ToUpper(name[0]) + name.Substring(1); // Primera mayÃºscula
+    }
 
     private void ShowConfirmationMessage()
     {
@@ -72,6 +84,6 @@ public class NameInputHandler : MonoBehaviour
 
     private void BackToMenu()
     {
-        SceneManager.LoadScene("EscenaPrincipal"); // Asegúrate de que el nombre de la escena es correcto
+        SceneManager.LoadScene("EscenaPrincipal");
     }
 }
