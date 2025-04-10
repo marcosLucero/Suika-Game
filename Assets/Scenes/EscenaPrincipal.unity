@@ -598,7 +598,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Jugar Solo
+  m_Text: Modo Normal
 --- !u!222 &223636608
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2079,7 +2079,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Jugar Eventos
+  m_Text: Modo Eventos
 --- !u!222 &1751275619
 CanvasRenderer:
   m_ObjectHideFlags: 0
