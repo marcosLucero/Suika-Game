@@ -2091,7 +2091,7 @@ MonoBehaviour:
   spinSpeed: 1000
   slowDownTime: 2
   slotImages:
-  - {fileID: 21300000, guid: b1bae719a1720684b9dd291ee592cddd, type: 3}
+  - {fileID: 279919546456459192, guid: 7e6b50cb77de7454cbee3a393afd9899, type: 3}
   - {fileID: -3524680164563674979, guid: d835278d763d8fb4f8785f9ee130f0f9, type: 3}
   - {fileID: -6721376598215215598, guid: 2b0a888947486cf4aaaee56c2e9d37c5, type: 3}
   - {fileID: -999998543685815653, guid: 8054def34c51d7649b31e39e4c7c1b02, type: 3}
