@@ -555,6 +555,7 @@ GameObject:
   - component: {fileID: 61382737}
   - component: {fileID: 61382738}
   - component: {fileID: 61382739}
+  - component: {fileID: 61382740}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -679,6 +680,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetCanvas: {fileID: 1774915084}
   closeButton: {fileID: 0}
+--- !u!114 &61382740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 61382734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 670d6dc6df183f846a35659a85f51cca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &79530381
 GameObject:
   m_ObjectHideFlags: 0
@@ -5328,6 +5341,14 @@ PrefabInstance:
     - target: {fileID: 1984914344335269787, guid: 5cb957daa505c8b45a87cbbbe3b3decb, type: 3}
       propertyPath: m_Name
       value: ButtonVolver
+      objectReference: {fileID: 0}
+    - target: {fileID: 8404798401596198804, guid: 5cb957daa505c8b45a87cbbbe3b3decb, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 61382740}
+    - target: {fileID: 8404798401596198804, guid: 5cb957daa505c8b45a87cbbbe3b3decb, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: VolverAEscenaPrincipal
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
