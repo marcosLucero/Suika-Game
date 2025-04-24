@@ -34,7 +34,7 @@ public class RandomEvents : MonoBehaviour
         // 🛑 No activar eventos si hay uno en curso
         if (eventActive || gameManager == null) return;
 
-        if (gameManager.CurrentScore >= lastScore + 5)
+        if (gameManager.CurrentScore >= lastScore + 50)
         {
             //TriggerRandomEvent();
             StartEventWithSlot();
