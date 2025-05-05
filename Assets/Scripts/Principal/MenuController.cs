@@ -39,11 +39,18 @@ public class MenuController : MonoBehaviour
 
     private void Update()
     {
-        if (menuVisible && Keyboard.current.escapeKey.wasPressedThisFrame)
+        if (menuVisible)
         {
-            StartCoroutine(FadeOutAndDisable());
+            // Teclado
+            if (Keyboard.current.escapeKey.wasPressedThisFrame ||
+                // Mando: botón B (botón Este en el gamepad)
+                (Gamepad.current != null && Gamepad.current.buttonEast.wasPressedThisFrame))
+            {
+                StartCoroutine(FadeOutAndDisable());
+            }
         }
     }
+
 
     private void ToggleMenu()
     {

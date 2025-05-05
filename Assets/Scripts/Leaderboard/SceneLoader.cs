@@ -10,8 +10,8 @@ public class SceneLoader : MonoBehaviour
 
     void Update()
     {
-        // Si se presiona la tecla ESC, carga la escena principal
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) ||
+            (UnityEngine.InputSystem.Gamepad.current != null && UnityEngine.InputSystem.Gamepad.current.buttonNorth.wasPressedThisFrame))
         {
             VolverAEscenaPrincipal();
         }
