@@ -256,6 +256,7 @@ GameObject:
   - component: {fileID: 68145489}
   - component: {fileID: 68145490}
   - component: {fileID: 68145491}
+  - component: {fileID: 68145492}
   m_Layer: 0
   m_Name: EscriptsEscena
   m_TagString: Untagged
@@ -347,6 +348,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   primerCanvas: {fileID: 753312086}
   botonPorSeleccionar: {fileID: 1814603895}
+--- !u!114 &68145492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 68145485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37b887c71b366314fa5cd1adeb614ce5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultButton: {fileID: 1814603897}
 --- !u!1 &88282472
 GameObject:
   m_ObjectHideFlags: 0
