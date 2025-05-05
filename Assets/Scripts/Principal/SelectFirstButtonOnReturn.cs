@@ -9,6 +9,7 @@ public class SelectFirstButtonOnReturn : MonoBehaviour
 
     void Start()
     {
+        // Asegurarse de que se reinicia cada vez que se inicia la escena
         if (!PlayerPrefs.HasKey(FirstTimeKey))
         {
             // Es la primera vez, no seleccionamos ningún botón
@@ -21,6 +22,9 @@ public class SelectFirstButtonOnReturn : MonoBehaviour
             {
                 EventSystem.current.SetSelectedGameObject(defaultButton.gameObject);
             }
+
+            // Restablecer la preferencia para que no se quede guardada en ejecuciones posteriores
+            PlayerPrefs.DeleteKey(FirstTimeKey);  // Eliminar la clave para reiniciar el comportamiento
         }
     }
 }
