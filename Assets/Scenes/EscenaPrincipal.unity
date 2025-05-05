@@ -318,6 +318,7 @@ MonoBehaviour:
   panelCanvasGroup: {fileID: 1110509071}
   botonesExtra: {fileID: 262575826}
   botonPrincipal: {fileID: 1056386412}
+  primerBotonMenuPrincipal: {fileID: 1814603897}
 --- !u!114 &68145490
 MonoBehaviour:
   m_ObjectHideFlags: 0
