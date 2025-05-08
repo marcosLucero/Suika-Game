@@ -15,6 +15,15 @@ public class SoundToggle : MonoBehaviour
         UpdateButton();
     }
 
+    private void Update()
+    {
+        // Detectar el botón Start del mando (JoystickButton7)
+        if (Input.GetKeyDown(KeyCode.JoystickButton7))
+        {
+            ToggleSound();
+        }
+    }
+
     public void ToggleSound()
     {
         if (SoundManager.Instance != null)
