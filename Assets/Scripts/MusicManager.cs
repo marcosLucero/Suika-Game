@@ -34,7 +34,7 @@ public class MusicManager : MonoBehaviour
         }
 
         // Aseguramos que la imagen del botón y el color estén correctamente al iniciar
-        ColorUtility.TryParseHtmlString("#B4B4B4", out activeColor); // Color activo (por defecto)
+        activeColor = Color.white; // Color blanco cuando está activo
         UpdateButtonImage(); // Para actualizar imagen y color
     }
 

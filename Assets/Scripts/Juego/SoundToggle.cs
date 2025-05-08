@@ -11,7 +11,7 @@ public class SoundToggle : MonoBehaviour
 
     private void Start()
     {
-        ColorUtility.TryParseHtmlString("#B4B4B4", out activeColor);
+        activeColor = Color.white; // Color blanco cuando está activo
         UpdateButton();
     }
 
