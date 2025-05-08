@@ -34,7 +34,7 @@ public class MusicaFondo : MonoBehaviour
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         // Destruye la música si no es una de las escenas deseadas
-        if (scene.name != "EscenaPrincipal" && scene.name != "Leaderboard")
+        if (scene.name != "EscenaPrincipal" && scene.name != "Leaderboard"  && scene.name != "Guia")
         {
             Destroy(gameObject);
         }

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class GameObjectSwitcher : MonoBehaviour
 {
@@ -12,11 +13,13 @@ public class GameObjectSwitcher : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetButtonDown("Horizontal") && Input.GetAxisRaw("Horizontal") > 0)
+        if (Input.GetKeyDown(KeyCode.RightArrow) ||
+            (UnityEngine.InputSystem.Gamepad.current != null && UnityEngine.InputSystem.Gamepad.current.dpad.right.wasPressedThisFrame))
         {
             Next();
         }
-        else if (Input.GetButtonDown("Horizontal") && Input.GetAxisRaw("Horizontal") < 0)
+        else if (Input.GetKeyDown(KeyCode.LeftArrow) ||
+                 (UnityEngine.InputSystem.Gamepad.current != null && UnityEngine.InputSystem.Gamepad.current.dpad.left.wasPressedThisFrame))
         {
             Previous();
         }
