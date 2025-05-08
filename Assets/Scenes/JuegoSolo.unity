@@ -648,6 +648,7 @@ MonoBehaviour:
   _player: {fileID: 530441448}
   _finalScoreText: {fileID: 1535182355}
   _fadeTime: 2
+  canvasInicio: {fileID: 1774915081}
   levelOne: 1
   TimeTillGamerOver: 1.5
   firebaseManager: {fileID: 317331783}
@@ -1656,7 +1657,7 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 0.43137255, b: 0, a: 1}
     m_HighlightedColor: {r: 0.13383985, g: 1, b: 0, a: 1}
     m_PressedColor: {r: 0.4027488, g: 1, b: 0.2783019, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 0.13333334, g: 1, b: 0, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -1679,6 +1680,18 @@ MonoBehaviour:
       - m_Target: {fileID: 61382739}
         m_TargetAssemblyTypeName: CanvasOncePerSession, Assembly-CSharp
         m_MethodName: HideCanvas
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 61382737}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: ResumeGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

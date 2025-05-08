@@ -15,12 +15,13 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject _panelImage; // Imagen de fondo del panel
     [SerializeField] private GameObject _box; // Referencia al objeto box
     [SerializeField] private GameObject _player; // Referencia al objeto player
-    [SerializeField] private TextMeshProUGUI _finalScoreText; // Texto "Tu puntuación: X"
+    [SerializeField] private TextMeshProUGUI _finalScoreText; // Texto "Tu puntuaciÃ³n: X"
     [SerializeField] private float _fadeTime = 2f;
+    [SerializeField] private GameObject canvasInicio; // Canvas de inicio
     public bool levelOne;
 
     // Tiempo hasta el game over
-    public float TimeTillGamerOver = 1.5f;  // Aquí definimos el tiempo en segundos
+    public float TimeTillGamerOver = 1.5f;  // AquÃ­ definimos el tiempo en segundos
 
     // Referencia al FirebaseManager
     public FirebaseManager firebaseManager;
@@ -47,6 +48,25 @@ public class GameManager : MonoBehaviour
         _gameOverPanel.SetActive(false);
     }
 
+    void Start()
+    {
+        // Inicializar el estado del canvas basado en Time.timeScale
+        UpdateCanvasState();
+    }
+
+    void Update()
+    {
+        // Verificar constantemente el estado del juego
+        UpdateCanvasState();
+    }
+
+    private void UpdateCanvasState()
+    {
+        if (canvasInicio != null)
+        {
+            canvasInicio.SetActive(Time.timeScale == 0f);
+        }
+    }
 
     public void IncreaseScore(int amount)
     {
@@ -54,7 +74,7 @@ public class GameManager : MonoBehaviour
         _scoreText.text = CurrentScore.ToString("0");
     }
 
-    // Este método lo llamas desde el botón para guardar los datos
+    // Este mÃ©todo lo llamas desde el botÃ³n para guardar los datos
     public void SaveData()
     {
         playerName = FindObjectOfType<ScoreManager>().playerNameInput.text.Trim(); // Tomar el nombre desde ScoreManager
@@ -79,8 +99,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-
-
     public void GameOver()
     {
         // Desactivar el jugador y la caja cuando el juego termina
@@ -94,13 +112,13 @@ public class GameManager : MonoBehaviour
             _player.SetActive(false);
         }
 
-        // Mostrar la puntuación final en el panel de Game Over
+        // Mostrar la puntuaciÃ³n final en el panel de Game Over
         if (_finalScoreText != null)
         {
-            _finalScoreText.text = "Tu puntuación: " + CurrentScore;
+            _finalScoreText.text = "Tu puntuaciÃ³n: " + CurrentScore;
         }
 
-        // Mostrar el panel de Game Over con una animación de fade
+        // Mostrar el panel de Game Over con una animaciÃ³n de fade
         StartCoroutine(FadeInGameOverPanel());
     }
 

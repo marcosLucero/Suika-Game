@@ -1,30 +1,39 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class SelectFirstButtonOnReturn : MonoBehaviour
 {
     [SerializeField] private Button defaultButton;
-    private const string FirstTimeKey = "AlreadyVisitedLeaderboard";
+    private static bool isFirstLoad = true;
 
     void Start()
     {
-        // Asegurarse de que se reinicia cada vez que se inicia la escena
-        if (!PlayerPrefs.HasKey(FirstTimeKey))
+        if (isFirstLoad)
         {
-            // Es la primera vez, no seleccionamos ningún botón
-            PlayerPrefs.SetInt(FirstTimeKey, 1);
+            // Es la primera vez que se carga la escena, no seleccionamos nada
+            isFirstLoad = false;
+            return;
         }
-        else
-        {
-            // Ya se ha visitado antes, seleccionamos el primer botón
-            if (defaultButton != null)
-            {
-                EventSystem.current.SetSelectedGameObject(defaultButton.gameObject);
-            }
 
-            // Restablecer la preferencia para que no se quede guardada en ejecuciones posteriores
-            PlayerPrefs.DeleteKey(FirstTimeKey);  // Eliminar la clave para reiniciar el comportamiento
+        // Si no es la primera vez, seleccionamos el botÃ³n
+        if (defaultButton != null)
+        {
+            EventSystem.current.SetSelectedGameObject(defaultButton.gameObject);
+        }
+    }
+
+    void OnEnable()
+    {
+        if (isFirstLoad)
+        {
+            return;
+        }
+
+        if (defaultButton != null)
+        {
+            EventSystem.current.SetSelectedGameObject(defaultButton.gameObject);
         }
     }
 }
