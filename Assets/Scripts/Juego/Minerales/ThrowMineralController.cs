@@ -10,6 +10,7 @@ public class ThrowMineralController : MonoBehaviour
     [SerializeField] private Transform _mineralesTransform;
     [SerializeField] private Transform _parienteAntesThrow;
     [SerializeField] private MineralesSelector _selector;
+    [SerializeField] private Animator throwAnimator; // Referencia al Animator
 
     private PlayerController _playerController;
 
@@ -66,12 +67,18 @@ public class ThrowMineralController : MonoBehaviour
                 SpriteIndex index = MineralActual.GetComponent<SpriteIndex>();
                 Quaternion rot = MineralActual.transform.rotation;
 
+                // Reproducir la animación de lanzamiento
+                if (throwAnimator != null)
+                {
+                    Debug.Log("Activando animación de lanzamiento");
+                    throwAnimator.SetTrigger("Throw"); // Activar el trigger de la animación
+                }
+
                 GameObject newMineral = Instantiate(MineralesSelector.Instance.Minerales[index.Index],
                                                      MineralActual.transform.position, rot);
 
                 newMineral.transform.SetParent(_parienteAntesThrow);
                 newMineral.transform.localScale = MineralActual.transform.localScale; // Mantener escala
-
 
                 Destroy(MineralActual);
 
