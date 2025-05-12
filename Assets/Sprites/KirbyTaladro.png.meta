@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      KirbyTaladro_0: -6213547979648731391
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
