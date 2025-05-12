@@ -11,6 +11,7 @@ public class ThrowMineralController : MonoBehaviour
     [SerializeField] private Transform _parienteAntesThrow;
     [SerializeField] private MineralesSelector _selector;
     [SerializeField] private Animator throwAnimator; // Referencia al Animator
+    [SerializeField] private Animator fusionAnimator; // Referencia al Animator de fusión
 
     private PlayerController _playerController;
 
@@ -23,6 +24,8 @@ public class ThrowMineralController : MonoBehaviour
 
     public bool CanThrow { get; set; } = true;
     private int eventActive = 0;
+
+    private bool _isAnimating = false;
 
     private void Awake()
     {
@@ -56,7 +59,7 @@ public class ThrowMineralController : MonoBehaviour
     {
         if (eventActive == 0)
         {
-            if (UserInput.IsThrowPressed && CanThrow)
+            if (UserInput.IsThrowPressed && CanThrow && !_isAnimating)
             {
                 if (MineralActual == null)
                 {
@@ -64,6 +67,7 @@ public class ThrowMineralController : MonoBehaviour
                     return;
                 }
 
+                _isAnimating = true;
                 SpriteIndex index = MineralActual.GetComponent<SpriteIndex>();
                 Quaternion rot = MineralActual.transform.rotation;
 
@@ -72,6 +76,13 @@ public class ThrowMineralController : MonoBehaviour
                 {
                     Debug.Log("Activando animación de lanzamiento");
                     throwAnimator.SetTrigger("Throw"); // Activar el trigger de la animación
+                }
+
+                // Reproducir la animación de fusión
+                if (fusionAnimator != null)
+                {
+                    Debug.Log("Activando animación de fusión");
+                    fusionAnimator.SetTrigger("Throw"); // Activar el trigger de la animación
                 }
 
                 GameObject newMineral = Instantiate(MineralesSelector.Instance.Minerales[index.Index],
@@ -83,7 +94,22 @@ public class ThrowMineralController : MonoBehaviour
                 Destroy(MineralActual);
 
                 CanThrow = false;
+                StartCoroutine(ResetAnimationFlag());
             }
+        }
+    }
+
+    private IEnumerator ResetAnimationFlag()
+    {
+        yield return new WaitForSeconds(0.4f); // Esperar un poco más que la duración de la animación
+        _isAnimating = false;
+        if (throwAnimator != null)
+        {
+            throwAnimator.ResetTrigger("Throw"); // Resetear el trigger después de la animación
+        }
+        if (fusionAnimator != null)
+        {
+            fusionAnimator.ResetTrigger("Throw"); // Resetear el trigger después de la animación
         }
     }
 
