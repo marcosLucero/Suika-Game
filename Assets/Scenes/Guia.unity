@@ -1296,8 +1296,9 @@ GameObject:
   - component: {fileID: 283138912}
   - component: {fileID: 283138914}
   - component: {fileID: 283138913}
+  - component: {fileID: 283138915}
   m_Layer: 0
-  m_Name: guia1
+  m_Name: guia2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1407,7 +1408,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 50.195335, y: -9.573109, z: 77.52756, w: 26.388113}
+  m_margin: {x: 50.195335, y: -9.573109, z: 78.338486, w: 26.388113}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1421,6 +1422,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 283138911}
   m_CullTransparentMesh: 1
+--- !u!114 &283138915
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 283138911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd355e8b9f863fd4fbdd7eafdf613da4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: Guia2
+  tmpText: {fileID: 283138913}
+  legacyText: {fileID: 0}
 --- !u!1001 &334829075
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1833,8 +1849,9 @@ GameObject:
   - component: {fileID: 388632819}
   - component: {fileID: 388632821}
   - component: {fileID: 388632820}
+  - component: {fileID: 388632822}
   m_Layer: 0
-  m_Name: guia1
+  m_Name: guia3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1944,7 +1961,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 50.195335, y: -9.573109, z: 77.52756, w: 26.388113}
+  m_margin: {x: 50.195335, y: -9.573109, z: 79.419716, w: 26.388113}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1958,6 +1975,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 388632818}
   m_CullTransparentMesh: 1
+--- !u!114 &388632822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 388632818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd355e8b9f863fd4fbdd7eafdf613da4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: Guia3
+  tmpText: {fileID: 388632820}
+  legacyText: {fileID: 0}
 --- !u!1 &464792059
 GameObject:
   m_ObjectHideFlags: 0
@@ -2251,7 +2283,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 360813cb0f297d647b94b0b2d08319b0, type: 3}
+  m_Sprite: {fileID: -7513438613818375783, guid: 12af5822a8d4133409f70978092dbbca, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2505,8 +2537,9 @@ GameObject:
   - component: {fileID: 716227459}
   - component: {fileID: 716227461}
   - component: {fileID: 716227460}
+  - component: {fileID: 716227462}
   m_Layer: 0
-  m_Name: guia1
+  m_Name: guia4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2521,14 +2554,14 @@ RectTransform:
   m_GameObject: {fileID: 716227458}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -20.863186}
-  m_LocalScale: {x: 0.06566687, y: 0.15788804, z: 0.08598395}
+  m_LocalScale: {x: 0.10210592, y: 0.12145234, z: 0.08598395}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2004515786}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -3.6114988, y: -4.24683}
+  m_AnchoredPosition: {x: -2.15, y: -3.79}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &716227460
@@ -2578,10 +2611,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 8
+  m_fontSize: 8.05
   m_fontSizeBase: 8
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 1
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -2616,7 +2649,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 58.38071, y: -9.573109, z: 81.44708, w: 26.388113}
+  m_margin: {x: 60.002583, y: -16.39066, z: 102.80158, w: 26.388113}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -2630,6 +2663,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 716227458}
   m_CullTransparentMesh: 1
+--- !u!114 &716227462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 716227458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd355e8b9f863fd4fbdd7eafdf613da4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: Guia4
+  tmpText: {fileID: 716227460}
+  legacyText: {fileID: 0}
 --- !u!1 &730062727
 GameObject:
   m_ObjectHideFlags: 0
@@ -3037,7 +3085,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4cd2520e69524c6499c06bf77126b649, type: 3}
+  m_Sprite: {fileID: -5415244102446938480, guid: 26b9821ac3bd0fb4598a45ad466ba70e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4137,7 +4185,7 @@ Transform:
   m_GameObject: {fileID: 1212488296}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.09, y: -3.03, z: -20.863186}
+  m_LocalPosition: {x: 0.04, y: -3.03, z: -20.863186}
   m_LocalScale: {x: 0.49999994, y: 0.49999994, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4232,7 +4280,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 1.78, y: -0.92}
+  m_AnchoredPosition: {x: 1.78, y: -1.33}
   m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1227314066
@@ -4284,8 +4332,9 @@ GameObject:
   - component: {fileID: 1252858051}
   - component: {fileID: 1252858053}
   - component: {fileID: 1252858052}
+  - component: {fileID: 1252858054}
   m_Layer: 0
-  m_Name: guia1
+  m_Name: guia8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4409,6 +4458,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1252858050}
   m_CullTransparentMesh: 1
+--- !u!114 &1252858054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1252858050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd355e8b9f863fd4fbdd7eafdf613da4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: Guia8
+  tmpText: {fileID: 1252858052}
+  legacyText: {fileID: 0}
 --- !u!1 &1267225041
 GameObject:
   m_ObjectHideFlags: 0
@@ -4420,8 +4484,9 @@ GameObject:
   - component: {fileID: 1267225042}
   - component: {fileID: 1267225044}
   - component: {fileID: 1267225043}
+  - component: {fileID: 1267225045}
   m_Layer: 0
-  m_Name: guia1
+  m_Name: guia6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4493,10 +4558,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 8.8
+  m_fontSize: 8.65
   m_fontSizeBase: 8.8
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 1
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -4531,7 +4596,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 50.195335, y: -9.573109, z: 77.52756, w: 26.388113}
+  m_margin: {x: 50.195335, y: -9.573109, z: 79.13275, w: 27.436968}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -4545,6 +4610,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1267225041}
   m_CullTransparentMesh: 1
+--- !u!114 &1267225045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1267225041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd355e8b9f863fd4fbdd7eafdf613da4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: Guia6
+  tmpText: {fileID: 1267225043}
+  legacyText: {fileID: 0}
 --- !u!1 &1280810800
 GameObject:
   m_ObjectHideFlags: 0
@@ -4556,6 +4636,7 @@ GameObject:
   - component: {fileID: 1280810801}
   - component: {fileID: 1280810803}
   - component: {fileID: 1280810802}
+  - component: {fileID: 1280810804}
   m_Layer: 0
   m_Name: guia1
   m_TagString: Untagged
@@ -4667,7 +4748,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 52.55316, y: -8.251614, z: 66.52436, w: -7.640373}
+  m_margin: {x: 50.931293, y: -8.251614, z: 77.877396, w: -7.640373}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -4681,6 +4762,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1280810800}
   m_CullTransparentMesh: 1
+--- !u!114 &1280810804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1280810800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd355e8b9f863fd4fbdd7eafdf613da4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: Guia1
+  tmpText: {fileID: 1280810802}
+  legacyText: {fileID: 0}
 --- !u!1 &1384305955
 GameObject:
   m_ObjectHideFlags: 0
@@ -4806,7 +4902,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4831c98c346686e428b47de0ca2f9a7b, type: 3}
+  m_Sprite: {fileID: -7513438613818375783, guid: 12af5822a8d4133409f70978092dbbca, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5135,8 +5231,9 @@ GameObject:
   - component: {fileID: 1496418281}
   - component: {fileID: 1496418283}
   - component: {fileID: 1496418282}
+  - component: {fileID: 1496418284}
   m_Layer: 0
-  m_Name: guia1
+  m_Name: guia7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5246,7 +5343,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 50.195335, y: -9.573109, z: 77.52756, w: 26.388113}
+  m_margin: {x: 50.195335, y: -9.573109, z: 78.40112, w: 26.388113}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -5260,6 +5357,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1496418280}
   m_CullTransparentMesh: 1
+--- !u!114 &1496418284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1496418280}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd355e8b9f863fd4fbdd7eafdf613da4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: Guia7
+  tmpText: {fileID: 1496418282}
+  legacyText: {fileID: 0}
 --- !u!1 &1535301295
 GameObject:
   m_ObjectHideFlags: 0
@@ -5346,8 +5458,9 @@ GameObject:
   - component: {fileID: 1543852540}
   - component: {fileID: 1543852542}
   - component: {fileID: 1543852541}
+  - component: {fileID: 1543852543}
   m_Layer: 0
-  m_Name: guia1
+  m_Name: guia5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5457,7 +5570,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 50.195335, y: -9.573109, z: 77.52756, w: 26.388113}
+  m_margin: {x: 50.195335, y: -9.573109, z: 77.79717, w: 27.26216}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -5471,6 +5584,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1543852539}
   m_CullTransparentMesh: 1
+--- !u!114 &1543852543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1543852539}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd355e8b9f863fd4fbdd7eafdf613da4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: Guia5
+  tmpText: {fileID: 1543852541}
+  legacyText: {fileID: 0}
 --- !u!1 &1564243631
 GameObject:
   m_ObjectHideFlags: 0
@@ -5482,8 +5610,9 @@ GameObject:
   - component: {fileID: 1564243632}
   - component: {fileID: 1564243634}
   - component: {fileID: 1564243633}
+  - component: {fileID: 1564243635}
   m_Layer: 0
-  m_Name: guia1
+  m_Name: guia0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5556,10 +5685,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 9
+  m_fontSize: 9.05
   m_fontSizeBase: 9
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 1
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -5594,7 +5723,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 43.644512, y: -8.251614, z: 66.52436, w: -7.640373}
+  m_margin: {x: 43.644512, y: -8.251614, z: 69.76809, w: -7.640373}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -5608,6 +5737,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1564243631}
   m_CullTransparentMesh: 1
+--- !u!114 &1564243635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1564243631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd355e8b9f863fd4fbdd7eafdf613da4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: Guia0
+  tmpText: {fileID: 1564243633}
+  legacyText: {fileID: 0}
 --- !u!1 &1579498340
 GameObject:
   m_ObjectHideFlags: 0
@@ -5665,7 +5809,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 360813cb0f297d647b94b0b2d08319b0, type: 3}
+  m_Sprite: {fileID: -7513438613818375783, guid: 12af5822a8d4133409f70978092dbbca, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6174,6 +6318,78 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1651253737}
   m_CullTransparentMesh: 1
+--- !u!1 &1663630717
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1663630719}
+  - component: {fileID: 1663630718}
+  m_Layer: 0
+  m_Name: LocalizationManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1663630718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1663630717}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71da95f31775c044e85e6eb0fbb5c0a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textsToChange:
+  - key: Guia0
+    tmpText: {fileID: 1564243633}
+    legacyText: {fileID: 0}
+  - key: Guia1
+    tmpText: {fileID: 1280810802}
+    legacyText: {fileID: 0}
+  - key: Guia2
+    tmpText: {fileID: 283138913}
+    legacyText: {fileID: 0}
+  - key: Guia3
+    tmpText: {fileID: 388632820}
+    legacyText: {fileID: 0}
+  - key: Guia4
+    tmpText: {fileID: 716227460}
+    legacyText: {fileID: 0}
+  - key: Guia5
+    tmpText: {fileID: 1543852541}
+    legacyText: {fileID: 0}
+  - key: Guia6
+    tmpText: {fileID: 1267225043}
+    legacyText: {fileID: 0}
+  - key: Guia7
+    tmpText: {fileID: 1496418282}
+    legacyText: {fileID: 0}
+  - key: Guia8
+    tmpText: {fileID: 1252858052}
+    legacyText: {fileID: 0}
+--- !u!4 &1663630719
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1663630717}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.5034125, y: 2.0654974, z: 0.18313062}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1776726918
 GameObject:
   m_ObjectHideFlags: 0
@@ -6635,3 +6851,4 @@ SceneRoots:
   - {fileID: 1806539152}
   - {fileID: 1384305956}
   - {fileID: 378039408}
+  - {fileID: 1663630719}
