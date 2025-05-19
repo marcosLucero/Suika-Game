@@ -321,6 +321,8 @@ MonoBehaviour:
   botonesExtra: {fileID: 262575826}
   botonPrincipal: {fileID: 914320133}
   primerBotonMenuPrincipal: {fileID: 1814603897}
+  botonIdiomaEspanol: {fileID: 611254977}
+  botonIdiomaIngles: {fileID: 2114388852}
 --- !u!114 &68145490
 MonoBehaviour:
   m_ObjectHideFlags: 0

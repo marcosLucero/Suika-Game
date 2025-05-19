@@ -11,6 +11,8 @@ public class MenuController : MonoBehaviour
     [SerializeField] private GameObject botonesExtra;
     [SerializeField] private Button botonPrincipal;
     [SerializeField] private Button primerBotonMenuPrincipal; // ✅ Nuevo: primer botón del menú principal
+    [SerializeField] private Button botonIdiomaEspanol;
+    [SerializeField] private Button botonIdiomaIngles;
 
     private bool menuVisible = false;
     private Button primerBoton;
@@ -63,6 +65,10 @@ public class MenuController : MonoBehaviour
             StartCoroutine(FadeCanvasGroup(panelCanvasGroup, 0f, 1f, 0.3f));
             StartCoroutine(SeleccionarPrimerBotonConDelay());
             ConfigurarNavegacion();
+
+            // Desactivar botones de idioma
+            if (botonIdiomaEspanol != null) botonIdiomaEspanol.interactable = false;
+            if (botonIdiomaIngles != null) botonIdiomaIngles.interactable = false;
         }
         else
         {
@@ -86,7 +92,10 @@ public class MenuController : MonoBehaviour
         menuVisible = false;
         yield return null;
 
-        // ✅ Seleccionar el primer botón del menú principal si está asignado
+        // Activar botones de idioma
+        if (botonIdiomaEspanol != null) botonIdiomaEspanol.interactable = true;
+        if (botonIdiomaIngles != null) botonIdiomaIngles.interactable = true;
+
         if (primerBotonMenuPrincipal != null)
         {
             EventSystem.current.SetSelectedGameObject(null);
