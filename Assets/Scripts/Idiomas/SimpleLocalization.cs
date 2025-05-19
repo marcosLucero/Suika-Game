@@ -53,7 +53,7 @@ public class SimpleLocalization : MonoBehaviour
         { "Bienvenida", new string[] { "Bienvenido a Cozy Forge", "Welcome to Cozy Forge" } },
         { "Bienvenida2", new string[] { "Puedes usar el teclado o el mando para jugar a mi juego.\n\nEspero que lo disfrutes.", "You can use the keyboard or controller to play my game.\n\nI hope you enjoy it." } },
         { "Jugar", new string[] { "Jugar", "Play" } },
-        { "LeaderBoard", new string[] { "LeaderBoard", "Leaderboard" } },
+        { "LeaderBoard", new string[] { "Puntuacion", "Leaderboard" } },
         { "Guia", new string[] { "Guia", "Guide" } },
         { "Salir", new string[] { "Salir", "Exit" } },
         { "ModoNormal", new string[] { "Modo Normal", "Normal Mode" } },
