@@ -79,8 +79,8 @@ public class SimpleLocalization : MonoBehaviour
         // EscenaModoEventos
         { "BienvenidoModEventos", new string[] { "Bienvenido al Modo Eventos", "Welcome to Events Mode" } },
         { "LoreModEventos", new string[] { "Tus controles son\n\nPara el movimiento:\nPuedes usar tanto \"A\" y \"D\" o las flechas ←→\n\nPara lanzar minerales:\nUsas la \"barra espaciadora\" o la \"A\" en Mando", "Your controls are\n\nFor movement:\nYou can use either \"A\" and \"D\" or the arrow keys ←→\n\nTo throw minerals:\nUse the \"space bar\" or \"A\" on the controller" } },
-        { "ModEventosCont", new string[] { "Continuar", "Continue" } }
-
+        { "ModEventosCont", new string[] { "Continuar", "Continue" } },
+        { "ModEventosPuntuacion", new string[] { "PUNTUACIÓN", "SCORE" } }
     };
 
     public void SetLanguage(int langIndex) // 0 = español, 1 = inglés
