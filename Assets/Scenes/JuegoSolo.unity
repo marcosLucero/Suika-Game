@@ -2014,8 +2014,9 @@ GameObject:
   - component: {fileID: 293516030}
   - component: {fileID: 293516032}
   - component: {fileID: 293516031}
+  - component: {fileID: 293516033}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Text ModNormalCont
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2139,6 +2140,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 293516029}
   m_CullTransparentMesh: 1
+--- !u!114 &293516033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 293516029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd355e8b9f863fd4fbdd7eafdf613da4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: ModNormalCont
+  tmpText: {fileID: 293516031}
+  legacyText: {fileID: 0}
 --- !u!1 &295743262
 GameObject:
   m_ObjectHideFlags: 0

@@ -2604,8 +2604,9 @@ GameObject:
   - component: {fileID: 499074981}
   - component: {fileID: 499074983}
   - component: {fileID: 499074982}
+  - component: {fileID: 499074984}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: BienvenidoModEventos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2729,6 +2730,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 499074980}
   m_CullTransparentMesh: 1
+--- !u!114 &499074984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 499074980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd355e8b9f863fd4fbdd7eafdf613da4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: BienvenidoModEventos
+  tmpText: {fileID: 499074982}
+  legacyText: {fileID: 0}
 --- !u!1 &519542552
 GameObject:
   m_ObjectHideFlags: 0
@@ -3381,8 +3397,9 @@ GameObject:
   - component: {fileID: 610681294}
   - component: {fileID: 610681296}
   - component: {fileID: 610681295}
+  - component: {fileID: 610681297}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: ModEventosCont
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3506,6 +3523,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 610681293}
   m_CullTransparentMesh: 1
+--- !u!114 &610681297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 610681293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd355e8b9f863fd4fbdd7eafdf613da4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: ModEventosCont
+  tmpText: {fileID: 610681295}
+  legacyText: {fileID: 0}
 --- !u!1 &646095192
 GameObject:
   m_ObjectHideFlags: 0
@@ -5226,7 +5258,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1012553076
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8808,8 +8840,9 @@ GameObject:
   - component: {fileID: 1939891567}
   - component: {fileID: 1939891569}
   - component: {fileID: 1939891568}
+  - component: {fileID: 1939891570}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: LoreModEventos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8935,6 +8968,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1939891566}
   m_CullTransparentMesh: 1
+--- !u!114 &1939891570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1939891566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd355e8b9f863fd4fbdd7eafdf613da4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: LoreModEventos
+  tmpText: {fileID: 1939891568}
+  legacyText: {fileID: 0}
 --- !u!1001 &1942781230
 PrefabInstance:
   m_ObjectHideFlags: 0
