@@ -51,6 +51,9 @@ public class SimpleLocalization : MonoBehaviour
         { "ModoNormal", new string[] { "Modo Normal", "Normal Mode" } },
         { "ModoEventos", new string[] { "Modo Eventos", "Events Mode" } },
         { "BotonContinuar", new string[] { "Continuar", "Continue" } },
+        //EscenaLeaderboard
+        { "ModEven", new string[] { "Modo con eventos", "Events Mode" } },
+        { "ModNormal", new string[] { "Modo normal", "Normal Mode" } },
         // EscenaGuia
         { "Guia0", new string[] { "Bienvenido al tutorial\n\nDonde podras ver las funciones del juego explicadas\n\nPudes usar A/D o ←→", "Welcome to the tutorial\n\nHere you can see the game functions explained\n\nYou can use A/D or ←→" } },
         { "Guia1", new string[] { "Aqui puedes ver la puntuacion actual", "Here you can see your current score" } },

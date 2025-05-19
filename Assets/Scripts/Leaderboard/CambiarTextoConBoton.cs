@@ -5,32 +5,32 @@ using TMPro;
 public class CambiarTextoYFlipImagen : MonoBehaviour
 {
     [SerializeField] private Button miBoton;
-    [SerializeField] private TextMeshProUGUI textoObjetivo;
+    [SerializeField] private GameObject textoTMPActivo;    // Activo al iniciar
+    [SerializeField] private GameObject textoTMPAActivar;  // Se activa al pulsar el botón
     [SerializeField] private Image imagenObjetivo;
-    [SerializeField] private string texto1 = "Modo sin eventos";
-    [SerializeField] private string texto2 = "Modo con eventos";
 
-    private bool usandoTexto1 = true;
+    private bool mostrandoPrimero = true;
 
     private void Start()
     {
-        if (miBoton != null && textoObjetivo != null && imagenObjetivo != null)
+        if (miBoton != null && textoTMPActivo != null && textoTMPAActivar != null && imagenObjetivo != null)
         {
-            miBoton.onClick.AddListener(ToggleTextoYImagen);
-            textoObjetivo.text = texto1; // Inicializa con texto1
+            miBoton.onClick.AddListener(ToggleTextosYFlipImagen);
+            textoTMPActivo.SetActive(true);      // Activo al iniciar
+            textoTMPAActivar.SetActive(false);   // Desactivado al iniciar
+            mostrandoPrimero = true;
         }
     }
 
-    private void ToggleTextoYImagen()
+    private void ToggleTextosYFlipImagen()
     {
-        // Cambiar texto
-        textoObjetivo.text = usandoTexto1 ? texto2 : texto1;
+        mostrandoPrimero = !mostrandoPrimero;
+        textoTMPActivo.SetActive(mostrandoPrimero);
+        textoTMPAActivar.SetActive(!mostrandoPrimero);
 
         // Voltear imagen horizontalmente
         Vector3 escalaActual = imagenObjetivo.rectTransform.localScale;
         escalaActual.x *= -1;
         imagenObjetivo.rectTransform.localScale = escalaActual;
-
-        usandoTexto1 = !usandoTexto1;
     }
 }
