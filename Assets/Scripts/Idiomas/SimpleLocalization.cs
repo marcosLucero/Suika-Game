@@ -6,8 +6,16 @@ using UnityEngine.SceneManagement;
 
 public class SimpleLocalization : MonoBehaviour
 {
+    public static SimpleLocalization Instance { get; private set; }
+
     void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
         DontDestroyOnLoad(gameObject);
         if (PlayerPrefs.HasKey("IdiomaSeleccionado"))
         {
@@ -64,8 +72,13 @@ public class SimpleLocalization : MonoBehaviour
         { "Guia6", new string[] { "Aqui puedes ver el siguiente mineral que podras lanzar", "Here you can see the next mineral you will be able to throw" } },
         { "Guia7", new string[] { "Aqui puedes ver el flujo de la forja", "Here you can see the forge flow" } },
         { "Guia8", new string[] { "Tu objetivo es hacer puntos combinando minerales que sean iguales.", "Your goal is to score points by combining matching minerals." } },
-        // Añade más aquí si lo necesitas
-    };
+        // EscenaModoNormal
+        { "BienvenidoModNormal", new string[] { "Bienvenido al Modo Normal", "Welcome to Normal Mode" } },
+        { "LoreModNormal", new string[] {
+            "Tus controles son\n\nPara el movimiento:\nPuedes usar tanto \"A\" y \"D\" o las flechas ←→\n\nPara lanzar minerales:\nUsas la \"barra espaciadora\" o la \"A\" en Mando",
+            "Your controls are\n\nFor movement:\nYou can use either \"A\" and \"D\" or the arrow keys ←→\n\nTo throw minerals:\nUse the \"space bar\" or \"A\" on the controller"
+        } },
+        };
 
     public void SetLanguage(int langIndex) // 0 = español, 1 = inglés
     {

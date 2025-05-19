@@ -257,6 +257,7 @@ GameObject:
   - component: {fileID: 68145490}
   - component: {fileID: 68145491}
   - component: {fileID: 68145492}
+  - component: {fileID: 68145493}
   m_Layer: 0
   m_Name: EscriptsEscena
   m_TagString: Untagged
@@ -361,6 +362,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultButton: {fileID: 1814603897}
+--- !u!114 &68145493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 68145485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36a201d73f0506d45b47d9bb749f9400, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  botonEspanol: {fileID: 611254977}
+  botonIngles: {fileID: 2114388852}
 --- !u!1 &178911809
 GameObject:
   m_ObjectHideFlags: 0
@@ -949,7 +964,7 @@ GameObject:
   - component: {fileID: 611254978}
   - component: {fileID: 611254977}
   m_Layer: 5
-  m_Name: ButtonIdioma (1)
+  m_Name: "ButtonEspa\xF1ol"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3119,7 +3134,7 @@ GameObject:
   - component: {fileID: 2114388853}
   - component: {fileID: 2114388852}
   m_Layer: 5
-  m_Name: ButtonIdioma
+  m_Name: ButtonIngles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -1467,8 +1467,9 @@ GameObject:
   - component: {fileID: 167877009}
   - component: {fileID: 167877011}
   - component: {fileID: 167877010}
+  - component: {fileID: 167877012}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Text MovimientosModNormal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1594,6 +1595,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 167877008}
   m_CullTransparentMesh: 1
+--- !u!114 &167877012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 167877008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd355e8b9f863fd4fbdd7eafdf613da4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: LoreModNormal
+  tmpText: {fileID: 167877010}
+  legacyText: {fileID: 0}
 --- !u!1 &227662189
 GameObject:
   m_ObjectHideFlags: 0
@@ -2387,8 +2403,9 @@ GameObject:
   - component: {fileID: 382712504}
   - component: {fileID: 382712506}
   - component: {fileID: 382712505}
+  - component: {fileID: 382712507}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Text BienvModnormal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2512,6 +2529,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 382712503}
   m_CullTransparentMesh: 1
+--- !u!114 &382712507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 382712503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd355e8b9f863fd4fbdd7eafdf613da4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: BienvenidoModNormal
+  tmpText: {fileID: 382712505}
+  legacyText: {fileID: 0}
 --- !u!1 &400688868
 GameObject:
   m_ObjectHideFlags: 0
@@ -7020,7 +7052,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1774915082
 MonoBehaviour:
   m_ObjectHideFlags: 0
