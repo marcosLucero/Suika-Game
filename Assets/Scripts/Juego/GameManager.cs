@@ -115,7 +115,7 @@ public class GameManager : MonoBehaviour
         // Mostrar la puntuación final en el panel de Game Over
         if (_finalScoreText != null)
         {
-            _finalScoreText.text = "Tu puntuación: " + CurrentScore;
+            _finalScoreText.text = "Puntuación: " + CurrentScore;
         }
 
         // Mostrar el panel de Game Over con una animación de fade
