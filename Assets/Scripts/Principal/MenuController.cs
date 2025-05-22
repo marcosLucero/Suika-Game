@@ -13,16 +13,24 @@ public class MenuController : MonoBehaviour
     [SerializeField] private Button primerBotonMenuPrincipal; // ✅ Nuevo: primer botón del menú principal
     [SerializeField] private Button botonIdiomaEspanol;
     [SerializeField] private Button botonIdiomaIngles;
+    [SerializeField] private SpriteRenderer imagenExtra1; // Cambiado a SpriteRenderer
+    [SerializeField] private SpriteRenderer imagenExtra2; // Cambiado a SpriteRenderer
 
     private bool menuVisible = false;
     private Button primerBoton;
     private Button segundoBoton;
+    private Color colorOriginal1;
+    private Color colorOriginal2;
 
     private void Start()
     {
         panelOscuro.SetActive(false);
         botonesExtra.SetActive(false);
         panelCanvasGroup.alpha = 0f;
+
+        // Guardar los colores originales
+        if (imagenExtra1 != null) colorOriginal1 = imagenExtra1.color;
+        if (imagenExtra2 != null) colorOriginal2 = imagenExtra2.color;
 
         botonPrincipal.onClick.AddListener(ToggleMenu);
 
@@ -66,9 +74,21 @@ public class MenuController : MonoBehaviour
             StartCoroutine(SeleccionarPrimerBotonConDelay());
             ConfigurarNavegacion();
 
-            // Desactivar botones de idioma
+            // Desactivar botones de idioma y hacer sprites semi-transparentes
             if (botonIdiomaEspanol != null) botonIdiomaEspanol.interactable = false;
             if (botonIdiomaIngles != null) botonIdiomaIngles.interactable = false;
+            if (imagenExtra1 != null)
+            {
+                Color colorTransparente = colorOriginal1;
+                colorTransparente.a = 0.5f;
+                imagenExtra1.color = colorTransparente;
+            }
+            if (imagenExtra2 != null)
+            {
+                Color colorTransparente = colorOriginal2;
+                colorTransparente.a = 0.5f;
+                imagenExtra2.color = colorTransparente;
+            }
         }
         else
         {
@@ -92,9 +112,11 @@ public class MenuController : MonoBehaviour
         menuVisible = false;
         yield return null;
 
-        // Activar botones de idioma
+        // Activar botones de idioma y restaurar colores originales de sprites
         if (botonIdiomaEspanol != null) botonIdiomaEspanol.interactable = true;
         if (botonIdiomaIngles != null) botonIdiomaIngles.interactable = true;
+        if (imagenExtra1 != null) imagenExtra1.color = colorOriginal1;
+        if (imagenExtra2 != null) imagenExtra2.color = colorOriginal2;
 
         if (primerBotonMenuPrincipal != null)
         {

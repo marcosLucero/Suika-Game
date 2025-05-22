@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 public class SimpleLocalization : MonoBehaviour
 {
@@ -128,6 +129,20 @@ public class SimpleLocalization : MonoBehaviour
                 comp.tmpText.text = newText;
             if (comp.legacyText != null)
                 comp.legacyText.text = newText;
+        }
+    }
+
+    void Update()
+    {
+        // Check for Start button (English)
+        if (Gamepad.current != null && Gamepad.current.startButton.wasPressedThisFrame)
+        {
+            SetLanguage(1); // Switch to English
+        }
+        // Check for Select button (Spanish)
+        else if (Gamepad.current != null && Gamepad.current.selectButton.wasPressedThisFrame)
+        {
+            SetLanguage(0); // Switch to Spanish
         }
     }
 }
