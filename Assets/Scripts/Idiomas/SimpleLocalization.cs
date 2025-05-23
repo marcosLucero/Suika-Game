@@ -146,15 +146,19 @@ public class SimpleLocalization : MonoBehaviour
 
     void Update()
     {
-        // Check for Start button (English)
-        if (Gamepad.current != null && Gamepad.current.startButton.wasPressedThisFrame)
+        // Solo cambiar el idioma en la escena principal
+        if (SceneManager.GetActiveScene().name == "EscenaPrincipal")
         {
-            SetLanguage(1); // Switch to English
-        }
-        // Check for Select button (Spanish)
-        else if (Gamepad.current != null && Gamepad.current.selectButton.wasPressedThisFrame)
-        {
-            SetLanguage(0); // Switch to Spanish
+            // Check for Start button (English)
+            if (Gamepad.current != null && Gamepad.current.startButton.wasPressedThisFrame)
+            {
+                SetLanguage(1); // Switch to English
+            }
+            // Check for Select button (Spanish)
+            else if (Gamepad.current != null && Gamepad.current.selectButton.wasPressedThisFrame)
+            {
+                SetLanguage(0); // Switch to Spanish
+            }
         }
     }
 }
