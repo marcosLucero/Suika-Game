@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.InputSystem;
 
 public class PauseManager : MonoBehaviour
 {
@@ -37,6 +38,19 @@ public class PauseManager : MonoBehaviour
 
     private void Update()
     {
+        // Detectar el botón izquierdo del mando (Y en Xbox, Triangle en PlayStation)
+        if (Gamepad.current != null && Gamepad.current.buttonWest.wasPressedThisFrame)
+        {
+            if (isPaused)
+            {
+                UnpauseGame();
+            }
+            else
+            {
+                PauseGame();
+            }
+        }
+
         // Si está pausado, cualquier tecla lo despausa
         if (isPaused && Input.anyKeyDown)
         {
