@@ -8,8 +8,12 @@ public class PauseManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI pauseText1;
     [SerializeField] private TextMeshProUGUI pauseText2;
 
+    [Header("Audio")]
+    [SerializeField] private AudioSource[] audioSources; // Array de todas las fuentes de audio que queremos pausar
+
     private bool isPaused = false;
     private float previousTimeScale;
+    private float[] previousPitchValues; // Para guardar los valores de pitch originales
 
     private void Awake()
     {
@@ -22,6 +26,12 @@ public class PauseManager : MonoBehaviour
         else
         {
             Debug.LogError("PauseManager: No se ha asignado el canvas de pausa!");
+        }
+
+        // Inicializar el array de pitch si hay fuentes de audio
+        if (audioSources != null && audioSources.Length > 0)
+        {
+            previousPitchValues = new float[audioSources.Length];
         }
     }
 
@@ -53,6 +63,19 @@ public class PauseManager : MonoBehaviour
         previousTimeScale = Time.timeScale;
         Time.timeScale = 0f;
         
+        // Pausar el audio
+        if (audioSources != null)
+        {
+            for (int i = 0; i < audioSources.Length; i++)
+            {
+                if (audioSources[i] != null)
+                {
+                    previousPitchValues[i] = audioSources[i].pitch;
+                    audioSources[i].pitch = 0f; // Esto efectivamente pausa el audio
+                }
+            }
+        }
+        
         // Mostrar el canvas de pausa
         if (pauseCanvas != null)
         {
@@ -72,6 +95,18 @@ public class PauseManager : MonoBehaviour
         // Restaurar el timeScale anterior
         Time.timeScale = previousTimeScale;
         
+        // Restaurar el audio
+        if (audioSources != null)
+        {
+            for (int i = 0; i < audioSources.Length; i++)
+            {
+                if (audioSources[i] != null)
+                {
+                    audioSources[i].pitch = previousPitchValues[i];
+                }
+            }
+        }
+        
         // Ocultar el canvas de pausa
         if (pauseCanvas != null)
         {
@@ -86,6 +121,17 @@ public class PauseManager : MonoBehaviour
         if (isPaused)
         {
             Time.timeScale = previousTimeScale;
+            // Restaurar el audio si es necesario
+            if (audioSources != null)
+            {
+                for (int i = 0; i < audioSources.Length; i++)
+                {
+                    if (audioSources[i] != null)
+                    {
+                        audioSources[i].pitch = previousPitchValues[i];
+                    }
+                }
+            }
         }
     }
 } 
