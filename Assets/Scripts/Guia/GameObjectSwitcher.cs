@@ -13,12 +13,12 @@ public class GameObjectSwitcher : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.RightArrow) ||
+        if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D) ||
             (UnityEngine.InputSystem.Gamepad.current != null && UnityEngine.InputSystem.Gamepad.current.dpad.right.wasPressedThisFrame))
         {
             Next();
         }
-        else if (Input.GetKeyDown(KeyCode.LeftArrow) ||
+        else if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A) ||
                  (UnityEngine.InputSystem.Gamepad.current != null && UnityEngine.InputSystem.Gamepad.current.dpad.left.wasPressedThisFrame))
         {
             Previous();
