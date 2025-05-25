@@ -83,6 +83,8 @@ public class SimpleLocalization : MonoBehaviour
         { "ModNormalBotonVolver", new string[] { "Volver al menu", "Back to menu" } },
         { "ModNormalHasperdido", new string[] { "HAS PERDIDO", "YOU LOST" } },
         { "ModNormalPuntuacion", new string[] { "PUNTUACIÓN", "SCORE" } },
+        { "ModNormalPausa", new string[] { "PAUSA", "PAUSE" } },
+        { "ModNormalPulsa", new string[] { "Pulsa cualquier boton para salir", "Press any button to exit" } },
         // EscenaModoEventos
         { "BienvenidoModEventos", new string[] { "Bienvenido al Modo Eventos", "Welcome to Events Mode" } },
         { "LoreModEventos", new string[] { "Tus controles son\n\nPara el movimiento:\nPuedes usar tanto \"A\" y \"D\" o las flechas ←→\n\nPara lanzar minerales:\nUsas la \"barra espaciadora\" o la \"A\" en Mando", "Your controls are\n\nFor movement:\nYou can use either \"A\" and \"D\" or the arrow keys ←→\n\nTo throw minerals:\nUse the \"space bar\" or \"A\" on the controller" } },
@@ -93,7 +95,8 @@ public class SimpleLocalization : MonoBehaviour
         { "ModEventosConfirmartexto", new string[] { "Nombre enviado correctamente", "Name submitted successfully" } },
         { "ModEventosBotonVolver", new string[] { "Volver al menu", "Back to menu" } },
         { "ModEventosHasperdido", new string[] { "HAS PERDIDO", "YOU LOST" } },
-        { "ModEventosTuPuntuacion", new string[] { "Tu puntuacion: 0", "Your score: 0" } }
+        { "ModEventosPausa", new string[] { "PAUSA", "PAUSE" } },
+        { "ModEventosPulsa", new string[] { "Pulsa cualquier boton para salir", "Press any button to exit" } }
     };
 
     public void SetLanguage(int langIndex) // 0 = español, 1 = inglés
