@@ -30,6 +30,8 @@ public class GameManager : MonoBehaviour
     // Nombre del jugador (esto lo puedes obtener de un Text Input si lo deseas)
     public string playerName = "Jugador";
 
+    private static bool hasShownInitialCanvas = false;
+
     private void Awake()
     {
         if (Instance == null)
@@ -37,34 +39,40 @@ public class GameManager : MonoBehaviour
             Instance = this;
         }
 
-       /* if (firebaseManager == null)
-        {
-            firebaseManager = FindObjectOfType<FirebaseManager>(); // Buscar el componente FirebaseManager en la escena
-        }*/
-
         _scoreText.text = CurrentScore.ToString("0");
 
         // Asegurar que el panel comienza desactivado
         _gameOverPanel.SetActive(false);
+
+        // Mostrar el canvas inicial solo la primera vez
+        if (!hasShownInitialCanvas && canvasInicio != null)
+        {
+            canvasInicio.SetActive(true);
+            Time.timeScale = 0f;
+            hasShownInitialCanvas = true;
+        }
+        else if (canvasInicio != null)
+        {
+            canvasInicio.SetActive(false);
+        }
     }
 
     void Start()
     {
-        // Inicializar el estado del canvas basado en Time.timeScale
-        UpdateCanvasState();
+        // Ya no necesitamos UpdateCanvasState aquí
     }
 
     void Update()
     {
-        // Verificar constantemente el estado del juego
-        UpdateCanvasState();
+        // Ya no necesitamos UpdateCanvasState aquí
     }
 
-    private void UpdateCanvasState()
+    public void HideInitialCanvas()
     {
         if (canvasInicio != null)
         {
-            canvasInicio.SetActive(Time.timeScale == 0f);
+            canvasInicio.SetActive(false);
+            Time.timeScale = 1f;
         }
     }
 

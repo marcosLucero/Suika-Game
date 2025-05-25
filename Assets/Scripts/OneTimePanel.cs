@@ -15,7 +15,7 @@ public class CanvasOncePerSession : MonoBehaviour
         
         if (!canvasShown)
         {
-            targetCanvas.gameObject.SetActive(true);
+            targetCanvas.enabled = true;
             Time.timeScale = 0f; // ⏸️ Pausar el juego
             canvasShown = true;
 
@@ -32,13 +32,18 @@ public class CanvasOncePerSession : MonoBehaviour
         }
         else
         {
-            targetCanvas.gameObject.SetActive(false);
+            targetCanvas.enabled = false;
         }
+    }
+
+    public bool IsCanvasActive()
+    {
+        return targetCanvas != null && targetCanvas.enabled;
     }
 
     public void HideCanvas()
     {
-        targetCanvas.gameObject.SetActive(false);
+        targetCanvas.enabled = false;
         Time.timeScale = 1f; // ▶️ Reanudar el juego
         StartCoroutine(EnableMineralThrowing());
     }
