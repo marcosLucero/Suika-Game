@@ -7,20 +7,35 @@ public class GhostModeEvent : MonoBehaviour
     public SpriteRenderer _spriteRenderer;
     ThrowMineralController throwMineralController;
     public Transform childA;
-
+    private bool isActive = false;
 
     private GameObject player;
 
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player"); // Buscar al jugador en la escena
+    }
 
+    private void OnDisable()
+    {
+        if (isActive && player != null)
+        {
+            _spriteRenderer.enabled = true;
+            throwMineralController = player.GetComponent<ThrowMineralController>();
+            throwMineralController.isEventActive(0);
+            if (childA != null && childA.childCount > 0)
+            {
+                childA.GetChild(0).GetComponent<SpriteRenderer>().enabled = true;
+            }
+            isActive = false;
+        }
     }
 
     public void TriggerGhostMode()
     {
-        if (player != null)
+        if (player != null && !isActive)
         {
+            isActive = true;
             StartCoroutine(GhostModeCountdown());
         }
     }
@@ -32,27 +47,23 @@ public class GhostModeEvent : MonoBehaviour
         _spriteRenderer.enabled = false;
         throwMineralController = player.GetComponent<ThrowMineralController>();
         throwMineralController.isEventActive(1);
-        //throwMineralController.enabled = false;
         childA = player.gameObject.transform.GetChild(1);
         if(childA.childCount > 0)
         {
             childA.GetChild(0).GetComponent<SpriteRenderer>().enabled=false;
         }
-        //player.SetActive(false); // 🔴 Desactivar jugador
 
-        yield return new WaitForSeconds(ghostDuration); // ⏳ Esperar los 5 segundos
+        yield return new WaitForSeconds(ghostDuration);
 
         _spriteRenderer.enabled = true;
         throwMineralController = player.GetComponent<ThrowMineralController>();
         throwMineralController.isEventActive(0);
-        //throwMineralController.enabled = true;
         if (childA.childCount > 0)
         {
             childA.GetChild(0).GetComponent<SpriteRenderer>().enabled = true;
         }
 
-        //player.SetActive(true); // 🟢 Reactivar jugador
-
         Debug.Log("👻 Modo Fantasma DESACTIVADO: Jugador vuelve");
+        isActive = false;
     }
 }

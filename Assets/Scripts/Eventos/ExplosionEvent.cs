@@ -7,6 +7,8 @@ public class ExplosionEvent : MonoBehaviour
     public float explosionRadius = 2f; // Radio de la explosión
     public float eventDuration = 3f; // Duración total del evento
     public LayerMask mineralLayer; // Capas de los minerales
+    private bool isActive = false;
+    private GameObject currentMineral;
 
     public AudioClip explosionSound; // Sonido de la explosión
     private AudioSource audioSource; // Componente de audio
@@ -23,15 +25,38 @@ public class ExplosionEvent : MonoBehaviour
         }
     }
 
+    private void OnDisable()
+    {
+        if (isActive)
+        {
+            if (audioSource != null && audioSource.isPlaying)
+            {
+                audioSource.Stop();
+            }
+            if (currentMineral != null)
+            {
+                SpriteRenderer mineralRenderer = currentMineral.GetComponent<SpriteRenderer>();
+                if (mineralRenderer != null)
+                {
+                    mineralRenderer.color = Color.white;
+                }
+            }
+            isActive = false;
+        }
+    }
+
     public void TriggerExplosion()
     {
+        if (isActive) return;
+        
         // Obtener todos los minerales en la escena
         GameObject[] minerals = GameObject.FindGameObjectsWithTag("Mineral");
 
         if (minerals.Length == 0) return; // Si no hay minerales, salir
 
+        isActive = true;
         // Seleccionar un mineral aleatorio
-        GameObject selectedMineral = minerals[Random.Range(0, minerals.Length)];
+        currentMineral = minerals[Random.Range(0, minerals.Length)];
 
         // 🔊 Reproducir sonido de explosión (solo si no está muteado)
         if (audioSource != null && explosionSound != null)
@@ -40,13 +65,17 @@ public class ExplosionEvent : MonoBehaviour
         }
 
         // Iniciar la cuenta regresiva para la explosión
-        StartCoroutine(ExplosionCountdown(selectedMineral));
+        StartCoroutine(ExplosionCountdown(currentMineral));
     }
 
     IEnumerator ExplosionCountdown(GameObject mineral)
     {
         SpriteRenderer mineralRenderer = mineral.GetComponent<SpriteRenderer>();
-        if (mineralRenderer == null) yield break;
+        if (mineralRenderer == null)
+        {
+            isActive = false;
+            yield break;
+        }
 
         float elapsedTime = 0f;
         Color originalColor = mineralRenderer.color;
@@ -61,6 +90,7 @@ public class ExplosionEvent : MonoBehaviour
                 {
                     audioSource.Stop();
                 }
+                isActive = false;
                 yield break;
             }
 
@@ -75,6 +105,9 @@ public class ExplosionEvent : MonoBehaviour
             Explode(mineral);
             Destroy(mineral);
         }
+        
+        isActive = false;
+        currentMineral = null;
     }
 
     void Explode(GameObject mineral)

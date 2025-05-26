@@ -31,12 +31,11 @@ public class RandomEvents : MonoBehaviour
 
     private void Update()
     {
-        // 🛑 No activar eventos si hay uno en curso
-        if (eventActive || gameManager == null) return;
+        // 🛑 No activar eventos si hay uno en curso o si el SpeedUpEvent está activo
+        if (eventActive || gameManager == null || (speedUpEvent != null && !speedUpEvent.IsEventTrulyFinished)) return;
 
-        if (gameManager.CurrentScore >= lastScore + 50)
+        if (gameManager.CurrentScore >= lastScore + 5)
         {
-            //TriggerRandomEvent();
             StartEventWithSlot();
         }
     }
@@ -51,6 +50,14 @@ public class RandomEvents : MonoBehaviour
 
     private void TriggerEventFromSlot(int resultIndex)
     {
+        // Verificar si el SpeedUpEvent está realmente terminado antes de activar cualquier evento
+        if (speedUpEvent != null && !speedUpEvent.IsEventTrulyFinished)
+        {
+            Debug.Log("Esperando a que termine el SpeedUpEvent...");
+            ResetEvent();
+            return;
+        }
+
         switch (resultIndex)
         {
             case 0:
