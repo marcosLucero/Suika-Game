@@ -34,7 +34,7 @@ public class RandomEvents : MonoBehaviour
         // 🛑 No activar eventos si hay uno en curso o si el SpeedUpEvent está activo
         if (eventActive || gameManager == null || (speedUpEvent != null && !speedUpEvent.IsEventTrulyFinished)) return;
 
-        if (gameManager.CurrentScore >= lastScore + 5)
+        if (gameManager.CurrentScore >= lastScore + 50)
         {
             StartEventWithSlot();
         }
